@@ -4,7 +4,7 @@
 > 以下のパスは事前に環境構築を終えていなければ到達できません。事前に環境構築を済ませましょう。
 
 ```bash
-~/colcon_ws/src/erasers_kachaka/kachaka_api/tools/ros2_bridge
+~/colcon_ws/src/erasers_kachaka/kachaka-api/tools/ros2_bridge
 ```
 上記パスに移動したら、`ls` コマンドを実行して `docker-compose.yaml` というファイルがあるかどうか確認し、このファイルを開いてください。VScode をインストールしているならば、以下のコマンドでファイルを開くことができます。
 ```
