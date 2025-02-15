@@ -94,3 +94,56 @@
 　「完了」ボタンをクリックすると VScode がこのように起動します。これで VScode のインストールは完了です！
 
  <img width=25%/><img src="/imgs/vscode_window.png" width=50% />
+
+## VScode の環境構築をする（日本語にする方法）
+
+　インストールされた VScode のデフォルト言語は 
+**英語**
+です。日本語にするための手順を紹介します。
+
+　まず、起動している VScode 上で、キーボードショートカット「**Control + Shift + P**」を行ってください。すると以下のように「コマンドパレット」と呼ばれるインターフェースが表示されます。<br>
+ コマンドパレットの `>` の後に **`configure`** と入力してください。
+ 
+<img src="/imgs/vscode_lang1.png" width=50% />
+
+　すると、コマンドパレット下に候補として **`Configure Display Language`** が表示されるので、この項目をクリックしてください。
+
+<img src="/imgs/vscode_lang2.png" width=50% />
+
+　するとこのように言語の選択項目が表示されます。「日本語」をクリックしてください。
+
+<img src="/imgs/vscode_lang3.png" width=50% />
+
+　このようなポップアップが表示されます。「Restart」ボタンをクリックすると VScode が再起動します。
+
+<img src="/imgs/vscode_lang4.png" width=50% />
+
+　しばらくすると VScode は自動的に再起動します。再起動後の VScode が日本語になれば成功です！
+ 
+<img src="/imgs/vscode_lang5.png" width=50% />
+
+## VScode の環境構築をする（開発用拡張機能をインストールする）
+
+　ロボット開発をするためには **WSL2** という仮想環境を使用します。VScode で WSL2 にアクセスし、コードを記述、編集できるようにするための拡張機能をインストールする方法を解説します。
+
+　VScode を開き、VScode の画面左端にある
+ **田みたいなマーク**
+ 「拡張機能」をクリックしてください。
+
+<img src="/imgs/vscode_ext1.png" width=50% />
+
+　拡張機能をクリックするとこのような画面が表示されます。検索バーをクリックしてください。
+
+<img src="/imgs/vscode_ext2.png" width=50% />
+
+　検索バーに **`Remote`** と入力してください。すると検索結果に「**Remote Development**」という項目が表示されます。
+
+<img src="/imgs/vscode_ext3.png" width=50% />
+
+　青い「インストール」ボタンをクリックしてこの拡張機能をインストールしてください。
+
+<img src="/imgs/vscode_ext4.png" width=50% />
+
+　インストールが完了すると「インストール」ボタンが消え、拡張機能アイコンの上にテレビモニターのようなアイコンが表示されます。これで拡張機能のインストールは完了です！
+
+<img src="/imgs/vscode_ext5.png" width=50% />
