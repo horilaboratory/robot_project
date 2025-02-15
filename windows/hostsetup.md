@@ -19,7 +19,7 @@
 
 それでは、Windows の環境構築を進めていきましょう！
 
-<img src="/imgs/win_desktop.png" />
+<img width=25%/><img src="/imgs/win_desktop.png" width=50% />
 
 ## 必要なソフトウェアとシステム一覧
 　ロボット開発をはじめるには、以下のソフトウェアやシステムを導入する必要があります。
@@ -33,7 +33,8 @@
 
 ## VScode をインストールする方法
 ### VScode とは
-<img src="/imgs/logo_vscode.png" />
+<img width=37.5%/><img src="/imgs/logo_vscode.png" width=25% />
+
 　VScode（Visual Studio Code）とは、無料のプログラミングコード専門のエディタです。
 
 - 資料制作の Word
@@ -92,4 +93,4 @@
 
 　「完了」ボタンをクリックすると VScode がこのように起動します。これで VScode のインストールは完了です！
 
- <img src="/imgs/vscode_window.png" />
+ <img width=25%/><img src="/imgs/vscode_window.png" width=50% />
