@@ -23,3 +23,7 @@ echo ". /opt/ros/humble/setup.bash" >> ~/.bashrc
 > [!TIP]
 > 上記コマンドはこの動画のようにコマンドブロック右上にあるコピーボタンを押してコピーしましょう。そしてターミナル内で Control + V をすることですべてのコマンドをペーストして一括実行できます。
 > <img src="/imgs/ros2_install2.gif" width=50% />
+
+---
+
+- [Windows でロボット開発をはじめるのセクション **ROS2 Humble をインストールする** に戻る](/windows/hostsetup.md/#ros2)
