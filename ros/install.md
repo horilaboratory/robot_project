@@ -6,7 +6,7 @@
 ## Ubuntu を開く
 　ターミナルを開いて、Ubuntu を起動してください。
 
-<img src="/imgs/ros2_install1.png" width=50% />
+<img src="/imgs/ros2_install.png" width=50% />
 
 ## ROS2 Humble をインストールする
 　以下のコマンドを実行してください。
