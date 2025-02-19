@@ -87,7 +87,7 @@ source ~/.bashrc
 ```
 　作業工程は以下の動画を参考にしてください。
 
-<img src="/imgs/erk_install.gif" width=50% />
+<img src="/imgs/erk_install.gif" />
 
 ## Docker イメージのビルドが完了したら
 　Docker イメージのビルドが完了したら、以下のコマンドを実行してイメージがあるか確認してください。
