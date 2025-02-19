@@ -317,3 +317,8 @@ ubuntu2204 config --default-user 先ほど作成したユーザー名
 　ターミナルから直接 Ubuntu を起動することができます。以下の動画を参考に、ターミナルのタブ横にある「+」を押して、**Ubuntu 22.04** を選択してください。ターミナルから Ubuntu を起動すると、動画にようにターミナルの画面色が紫色になり、PowerShell を開いているのか Ubuntu を開いているのか一目でわかるようになります。
 
 <img src="/imgs/terminal1.gif" width=50% />
+
+### デフォルトを Ubuntu にする方法
+　デフォルトではターミナルを起動すると PowerShell が起動しますが、以下の動画のように設定からデフォルトの起動プロファイルを Ubuntu にすることで、ターミナル起動時にすぐに Ubuntu が利用できるようになります。
+
+ <img src="/imgs/terminal2.gif" width=50% />
