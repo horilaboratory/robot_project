@@ -147,3 +147,37 @@
 　インストールが完了すると「インストール」ボタンが消え、拡張機能アイコンの上にテレビモニターのようなアイコンが表示されます。これで拡張機能のインストールは完了です！
 
 <img src="/imgs/vscode_ext5.png" width=50% />
+
+## WSL2 をインストールする方法
+### WSL2 とは？
+<img width=25%/> <img width=50% src='https://abrictosecurity.com/wp-content/uploads/2024/02/wsl_logo.png'/>
+
+　Windows Subsystem for Linux 2（WSL2）とは、Windows 上で Linux OS を動作させるための仮想プラットフォームです。
+
+### WSL2 をインストールする
+　デフォルトの Windows 11 では WSL2 はインストールされていません。インストールするには PowerShell というコマンドを入力するおあれっとを使用する必要があります。
+そのために、**Windows キーを押してスタートメニューを開き、`ターミナル` と検索してください。**
+
+<img src="/imgs/open_terminal.png" width=50% />
+
+候補に挙がった **ターミナル** を起動すると、このような黒いウィンドウが起動します。これが PowerShell で、コマンドを使いコンピューターを操作することができるインターフェースです。
+
+<img src="/imgs/opened_terminal.png" width=50% />
+
+　WSL2 をインストールするにはコマンドを使います。以下のコマンドをターミナル内に入力してください。コマンドを入力後エンターキーを押すと、入力されたコマンドが実行されます。
+```powershell
+wsl --install
+```
+> [!NOTE]
+> エンターキーを押す前に **入力されたコマンドにタイプミスがないか確認しましょう。**
+
+　コマンドを実行すると、以下のように管理者権限でシステムに変更を加えることを許可するかどうかのメッセージが表示されるので **「はい」** をクリックしてください。<br>
+　すると右の動画のように WSL2 のインストールが開始されます。
+ 
+<img src="https://osechi-tech.net/wp-content/uploads/2021/12/image-95.png" width=50% />
+<img src="/imgs/wsl_install.gif" width=50% />
+
+```
+要求された操作は正常に終了しました。変更を有効にするには、システムを再起動する必要があります。
+```
+というメッセージが PowerShell 上で表示されたら、コンピューターを再起動してください。
