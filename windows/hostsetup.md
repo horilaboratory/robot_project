@@ -323,6 +323,7 @@ ubuntu2204 config --default-user 先ほど作成したユーザー名
 
  <img src="/imgs/terminal2.gif" width=50% />
 
+<a id="ros2"></a>
 ## ROS2 Humble をインストールする
 　ロボット開発に必要なミドルウェア **ROS2 Humble** をインストールします。以下のリンクをクリックすると ROS2 Humble のインストール手順が書かれているため、ドキュメントの内容を読んで作業してください。作業が終わったらこのドキュメントに戻ってきてください。
 
