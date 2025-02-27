@@ -28,9 +28,10 @@ cd ~/colcon_ws/ && vcs import src < ~/colcon_ws/src/erasers_kachaka/setup.repos
 ## 実行ファイルのコピー
 　以下のコマンドを実行して実行ファイルを所定のディレクトリにコピーします。以下のコマンドをすべコピーして実行してください。
 ```bash
-cd ~/colcon_ws/src/erasers_kachaka &&\
 cp docker/Dockerfile.erk ../kachaka-api/ &&\
-cp customs/grpc_ros2_bridge.trcp.launch.xml ../kachaka-api/ros2/kachaka_grpc_ros2_bridge/launch/
+cp customs/grpc_ros2_bridge.trcp.launch.xml ../kachaka-api/ros2/kachaka_grpc_ros2_bridge/launch/ &&\
+cp customs/dynamic_tf_bridge.cpp ~/colcon_ws/src/kachaka-api/ros2/kachaka_grpc_ros2_bridge/src/dynamic_tf_bridge.cpp &&\
+cp customs/static_tf_component.cpp ~/colcon_ws/src/kachaka-api/ros2/kachaka_grpc_ros2_bridge/src/component/static_tf_component.cpp
 ```
 
 ## Docker イメージのビルド
