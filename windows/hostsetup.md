@@ -228,7 +228,15 @@ wsl -v
 <img src="/imgs/ubuntu_setup1.png" width=50% />
 
 > [!CAUTION]
-> もし、ターミナルに上記のような画面が表示されず、以下の図のようなメッセージが表示されたら [コンピューターの仮想化を有効化する方法](./enablevm.md) を参照してください。<br>
+> もし、ターミナルに上記のような画面が表示されず、以下の図のようなメッセージが表示されたら [コンピューターの仮想化を有効化する方法](./enablevm.md) を参照してください。
+> ```
+> Installing, this may take a few minutes...
+> WslRegisterDistribution failed with error: 0x80370102
+> Please enable the Virtual Machine Platform Windows feature and ensure virtualization is enabled in the BIOS.
+> For information please visit https://aka.ms/enablevirtualization
+> Press any key to continue...
+> ```
+> <br>
 > <img src="/imgs/error_vm.png" width=50% />
 
 　これから Ubuntu 内部のユーザーを作成する方法を解説します。まず、Ubuntu ターミナル上で以下のコマンドを入力してください。
