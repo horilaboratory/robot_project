@@ -48,8 +48,11 @@ cd ../kachaka-api && docker buildx build -t kachaka-api:erasers --target kachaka
 ```bash
 cd ~/colcon_ws
 ```
-以下のコマンドを実行して必要なパッケージを自動インストールします。
+以下の２つのコマンドを実行して必要なパッケージを自動インストールします。
 ```bash
+rosdep install -i -y --from-path src/kachaka-api/ros2/
+```
+```
 rosdep install -i -y --from-path src/cartographer
 ```
 以下のコマンドを実行してダウンロードしたパッケージをビルドします。
