@@ -76,6 +76,7 @@ gedit ~/.bashrc
 　`~/.bashrc` の一番下の行に以下のコードを追記してください。
 ```bash
 # kachaka
+export ROS_DOMAIN_ID=1
 export KACHAKA_NAME="er_kachaka"
 export KACHAKA_IP=192.168.8.11
 export KACHAKA_ERK_PATH=~/colcon_ws/src/erasers_kachaka
@@ -101,6 +102,12 @@ REPOSITORY    TAG       IMAGE ID       CREATED             SIZE
 kachaka-api   erasers   ea56c09c3e37   About an hour ago   1.37GB
 ```
 　これで erasers_kachaka のインストールは成功です！
+
+## map ディレクトリの作成
+　最後にホームディレクトリに map という名前のディレクトリを作成してください。このファイルにロボットが作成したマップが保存されます。
+```bash
+mkdir ~/map
+```
 
 ---
 
