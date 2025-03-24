@@ -37,14 +37,13 @@ Invoke-Item ~
 
 <img src="/imgs/wsl_install1.png" width=50% />
 
-
----
-
-- [Windows でロボット開発をはじめるのセクション **Hyper-V をインストールする** に戻る](/windows/hostsetup.md/#hyperv)
-
 ## Hyper-V の確認
 　再起動後スタートメニューで「Hyper-V」と入力して、
 **Hyper-V マネージャー**
 というソフトがあれば Hyper-V のインストールは成功です。
 
 <img src="/imgs/wsl_install2.png" width=50% />
+
+---
+
+- [Windows でロボット開発をはじめるのセクション **Hyper-V をインストールする** に戻る](/windows/hostsetup.md/#hyperv)
