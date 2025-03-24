@@ -23,7 +23,7 @@ git clone https://github.com/trcp/erasers_kachaka.git
 ## 依存関係パッケージのダウンロード
 　以下のコマンドを実行して依存関係パッケージをダウンロードします。
 ```bash
-cd ~/colcon_ws/ && vcs import src < ~/colcon_ws/src/erasers_kachaka/setup.repos
+vcs import .. < ./setup.repos
 ```
 ## 実行ファイルのコピー
 　以下のコマンドを実行して実行ファイルを所定のディレクトリにコピーします。以下のコマンドをすべコピーして実行してください。
@@ -43,23 +43,20 @@ cd ../kachaka-api && docker buildx build -t kachaka-api:erasers --target kachaka
 > [!NOTE]
 > Docker イメージのビルドには **かなりの時間がかかります。** そのためビルド中にターミナルで新規タブから Ubuntu に入って次の作業を行ってください。
 
-## kachaka-api のインストール
-　以下のコマンドを実行して kachaka_api Python モジュールをインストールします。以下のコマンドをすべコピーして実行してください。
-```bash
-sudo apt install -y python3-pip && python3 -m pip install --upgrade pip &&\
-pip install --break-system-packages --upgrade scipy && pip install --break-system-packages --extra-index-url https://pf-robotics.github.io/kachaka-python-packages/simple kachaka-api &&\
-```
-以下のコマンドを実行して何もメッセージが表示されなければ成功です。
-```bash
-python3 -c "import kachaka_api"
-```
-
 ## パッケージをビルドする
-　以下のコマンドを実行してダウンロードしたパッケージをビルドします。
+　以下のコマンドを実行して `~/colcon_ws` に移動します。
 ```bash
-cd ~/colcon_ws && colcon build --symlink-install --packages-up-to erasers_kachaka_bringup
+cd ~/colcon_ws
 ```
-　以下のコマンドを実行してビルドファイルが常に読み込まれるようにします。
+以下のコマンドを実行して必要なパッケージを自動インストールします。
+```bash
+rosdep install -i -y --from-path src/cartographer
+```
+以下のコマンドを実行してダウンロードしたパッケージをビルドします。
+```bash
+colcon build --symlink-install --packages-up-to erasers_kachaka_bringup
+```
+以下のコマンドを実行してビルドファイルが常に読み込まれるようにします。
 ```bash
 echo ". ~/colcon_ws/install/setup.bash" >> ~/.bashrc && . ~/.bashrc
 ```
@@ -77,7 +74,7 @@ gedit ~/.bashrc
 ```bash
 # kachaka
 export KACHAKA_NAME="er_kachaka"
-export KACHAKA_IP=192.168.195.125
+export KACHAKA_IP=192.168.8.11
 export KACHAKA_ERK_PATH=~/colcon_ws/src/erasers_kachaka
 export GRPC_PORT=26400
 export API_GRPC_BRIDGE_SERVER_URI="${KACHAKA_IP}:${GRPC_PORT}"
