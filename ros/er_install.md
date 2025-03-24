@@ -21,6 +21,10 @@ git clone https://github.com/trcp/erasers_kachaka.git
 ```
 
 ## 依存関係パッケージのダウンロード
+　以下のコマンドを実行して erasers_kachaka ディレクトリに移動します。
+```bash
+cd ~/colcon_ws/src/erasers_kachaka
+```
 　以下のコマンドを実行して依存関係パッケージをダウンロードします。
 ```bash
 vcs import .. < ./setup.repos
@@ -42,27 +46,6 @@ cd ../kachaka-api && docker buildx build -t kachaka-api:erasers --target kachaka
 
 > [!NOTE]
 > Docker イメージのビルドには **かなりの時間がかかります。** そのためビルド中にターミナルで新規タブから Ubuntu に入って次の作業を行ってください。
-
-## パッケージをビルドする
-　以下のコマンドを実行して `~/colcon_ws` に移動します。
-```bash
-cd ~/colcon_ws
-```
-以下の２つのコマンドを実行して必要なパッケージを自動インストールします。
-```bash
-rosdep install -i -y --from-path src/kachaka-api/ros2/
-```
-```
-rosdep install -i -y --from-path src/cartographer
-```
-以下のコマンドを実行してダウンロードしたパッケージをビルドします。
-```bash
-colcon build --symlink-install --packages-up-to erasers_kachaka_bringup
-```
-以下のコマンドを実行してビルドファイルが常に読み込まれるようにします。
-```bash
-echo ". ~/colcon_ws/install/setup.bash" >> ~/.bashrc && . ~/.bashrc
-```
 
 ## 環境設定を追記する
 　以下のコマンドを実行してテキストエディタをインストールします。
@@ -91,7 +74,7 @@ source ~/.bashrc
 
 <img src="/imgs/erk_install.gif" />
 
-## Docker イメージのビルドが完了したら
+## Docker イメージのビルドを確認する その１
 　Docker イメージのビルドが完了したら、以下のコマンドを実行してイメージがあるか確認してください。
 ```bash
 source ~/.bashrc && docker images
@@ -101,7 +84,37 @@ source ~/.bashrc && docker images
 REPOSITORY    TAG       IMAGE ID       CREATED             SIZE
 kachaka-api   erasers   ea56c09c3e37   About an hour ago   1.37GB
 ```
-　これで erasers_kachaka のインストールは成功です！
+
+## Default kachaka API コンテナをダウンロードする
+　以下のコマンドを実行して erasers_kachaka/docker ディレクトリに移動します。
+```bash
+cd ~/colcon=ws/src/erasers_kachaka/docker
+```
+以下のコマンドを実行して Default kachaka api をダウンロードします。
+```bash
+docker compose pull default_kachaka 
+```
+
+## パッケージをビルドする
+　以下のコマンドを実行して `~/colcon_ws` に移動します。
+```bash
+cd ~/colcon_ws
+```
+以下の２つのコマンドを実行して必要なパッケージを自動インストールします。
+```bash
+rosdep install -i -y --from-path src/kachaka-api/ros2/
+```
+```
+rosdep install -i -y --from-path src/cartographer
+```
+以下のコマンドを実行してダウンロードしたパッケージをビルドします。
+```bash
+colcon build --symlink-install --packages-up-to erasers_kachaka_bringup
+```
+以下のコマンドを実行してビルドファイルが常に読み込まれるようにします。
+```bash
+echo ". ~/colcon_ws/install/setup.bash" >> ~/.bashrc && . ~/.bashrc
+```
 
 ## map ディレクトリの作成
 　最後にホームディレクトリに map という名前のディレクトリを作成してください。このファイルにロボットが作成したマップが保存されます。
