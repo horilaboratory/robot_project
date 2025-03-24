@@ -24,6 +24,21 @@ echo ". /opt/ros/humble/setup.bash" >> ~/.bashrc
 > 上記コマンドはこの動画のようにコマンドブロック右上にあるコピーボタンを押してコピーしましょう。そしてターミナル内で Control + V をすることですべてのコマンドをペーストして一括実行できます。
 > <img src="/imgs/ros2_install2.gif" width=50% />
 
+## rosdep を利用可能にする
+　rosdep という ROS のパッケージを管理、インストールを支援してくれるパッケージを有効化する方法を解説します。以下のコマンドを実行してください。
+```bash
+sudo rosdep init
+```
+```
+Recommended: please run
+
+        rosdep update
+```
+上記のようなメッセージが表示されたら以下のコマンドを実行してください。
+```bash
+rosdep update
+```
+
 ---
 
 - [Windows でロボット開発をはじめるのセクション **ROS2 Humble をインストールする** に戻る](/windows/hostsetup.md/#ros2)
