@@ -26,7 +26,7 @@ git clone https://github.com/trcp/erasers_kachaka.git
 vcs import .. < ./setup.repos
 ```
 ## 実行ファイルのコピー
-　以下のコマンドを実行して実行ファイルを所定のディレクトリにコピーします。以下のコマンドをすべコピーして実行してください。
+　以下のコマンドを実行して実行ファイルを所定のディレクトリにコピーします。以下のコマンドをすべてコピーして実行してください。
 ```bash
 cp docker/Dockerfile.erk ../kachaka-api/ &&\
 cp customs/grpc_ros2_bridge.trcp.launch.xml ../kachaka-api/ros2/kachaka_grpc_ros2_bridge/launch/ &&\
