@@ -105,7 +105,7 @@ cd ~/colcon_ws
 rosdep install -i -y --from-path src/kachaka-api/ros2/
 ```
 ```
-rosdep install -i -y --from-path src/cartographer
+rosdep install -i -y --from-path src/cartographer_ros_kachaka
 ```
 以下のコマンドを実行してダウンロードしたパッケージをビルドします。
 ```bash
