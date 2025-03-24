@@ -221,6 +221,7 @@ wsl -v
 
 <img src="/imgs/ubuntu_install2.png" width=50% />
 
+<a id="setubuntu"></a>
 ### Ubuntu 内部のユーザー設定をする
 　初回で Ubuntu を起動すると、このようなウィンドウが表示されます。PowerShell に似ていますがこの画面が **Ubuntu です。**<br>
  プロンプトに `root` と表示されている場合、現在 **管理者権限で Ubuntu を操作している** ことを示しており、つまり **この Ubuntu にはユーザーが存在しない** ことを示しています。
