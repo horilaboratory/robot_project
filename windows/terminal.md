@@ -22,6 +22,7 @@
 
 <img src="/imgs/terminal1.gif" width=50% />
 
+<a id="editdefault"></a>
 ## デフォルトを Ubuntu にする方法
 　デフォルトではターミナルを起動すると PowerShell が起動しますが、以下の動画のように設定からデフォルトの起動プロファイルを Ubuntu にすることで、ターミナル起動時にすぐに Ubuntu が利用できるようになります。
 
