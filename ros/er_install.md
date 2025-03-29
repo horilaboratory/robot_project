@@ -88,7 +88,7 @@ kachaka-api   erasers   ea56c09c3e37   About an hour ago   1.37GB
 ## Default kachaka API コンテナをダウンロードする
 　以下のコマンドを実行して erasers_kachaka/docker ディレクトリに移動します。
 ```bash
-cd ~/colcon=ws/src/erasers_kachaka/docker
+cd ~/colcon_ws/src/erasers_kachaka/docker
 ```
 以下のコマンドを実行して Default kachaka api をダウンロードします。
 ```bash
