@@ -1,0 +1,14 @@
+# Virtual Boxで仮想マシンをセットアップする
+このドキュメントでは本講義用に配布されているVirtualBox仮想マシンイメージをインポートし，自分のWindowsパソコンにロボットを開発するための環境を構築する方法を説明します．
+
+## Virtual Boxとは
+Virtual BoxとはWindowsなどのコンピュータ上で別のコンピュータを仮想的に動作させるソフトウェアです．VirtualBoxが動作しているコンピュータのことをホスト，VirtualBox上で動作している仮想的なコンピュータのことを仮想マシン（Virtual Machine: VM）などと呼びます．
+
+本講義で必要となる開発環境はWindows OSではなく，Ubuntuと呼ばれるOSを用いて動作します．そこで，VirtualBoxを用いてみなさんのWindowsパソコン上に仮想的にUbuntuが動作するパソコンを作成し，その中で作業を行います．
+
+## VirtualBoxのインストール
+仮想マシンを動作させる基盤であるVirtualBoxのインストールを行います．
+以下のリンクをクリックしsて作業を進めてください．作業が終わったらこのドキュメントに戻ってきてください．
+- [VirtualBoxのインストール](/windows/vbox_install.md)
+
+## 講義用VMのインポート
