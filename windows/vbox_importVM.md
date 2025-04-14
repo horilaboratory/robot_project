@@ -6,7 +6,7 @@
 
 また，ファイルサイズが約10GBと重いため，安定したネット回線で時間に余裕を持って取り組むことをお勧めします．
 
-[ロボットプロジェクト用VMイメージダウンロード](https://gofile.me/7uBkJ/M2g27SO3w)
+[ロボットプロジェクト用VMイメージダウンロード](https://drive.google.com/file/d/18aB7Lft-sCk4GZxYHSB9pFyH_noTufyb/view?usp=share_link)
 
 ## VMのインポート
 VirtualBoxを起動して，ファイルメニューの`仮想アプライアンスのインポート` を選択します．
