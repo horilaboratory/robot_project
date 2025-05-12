@@ -1,74 +1,22 @@
-# 5. Kachaka を起動させてみよう
-　カチャカとお使いのコンピューターを接続してカチャカを動かしてみましょう。
+# 5. ROS2 の用語早見表
 
-## カチャカとPCの接続
-カチャカとPCをLANケーブルで接続します．カチャカ側は水色のルータの空いているLANポートに，PC側はご自身のパソコンのLANポートにケーブルを接続しましょう．
-
-↓カチャカに搭載している水色のルータ<br>
-<img src="/imgs/vb_test0.png" width=50%>
-
-## 接続先IPアドレスの確認
-カチャカは現在以下の表に基づいて IP アドレスが振られています。カチャカの番号はカチャカの LED リング内に記述されています。
-
-<a id='table'></a>
-|||
+| 用語名 | 概要 |
 |:---:|:---|
-|kachaka 1|192.168.8.11|
-|kachaka 2|192.168.8.12|
-|kachaka Pro|192.168.8.13|
+| **ROS** | Robot Operating System の略称。<br>ロボット開発のためのミドルウェアで、通信、制御、センサ処理などの機能を提供。<br>バージョン1系（ROS1）と、改良されたROS2が存在する。<br>[参考：ROS公式サイト](https://www.ros.org/) |
+| **ROS2** | ROS1を基にリアルタイム性、セキュリティ、マルチプラットフォーム対応を強化した次世代版。<br>DDS（Data Distribution Service）を通信ミドルウェアに採用。<br>産業利用や複数ロボット対応を重視している。<br>[参考：ROS2公式概要](https://docs.ros.org/en/humble/) |
+| **ノード（Node）** | ROSにおける基本的な処理単位。<br>各ノードは独立して動作し、他のノードと通信して情報をやり取りする。<br>軽量なプロセスとして複数のノードを分散実行可能。<br>[参考：Nodes - ROS 2 Docs](https://docs.ros.org/en/humble/Concepts/Nodes.html) |
+| **トピック（Topic）** | ノード間でデータを送受信するための通信チャンネル。<br>Publisherがデータを送信し、Subscriberが受信する。<br>センサデータのストリームなどに適している。<br>[参考：Topics - ROS 2 Docs](https://docs.ros.org/en/humble/Concepts/Topics.html) |
+| **Publish / Publisher** | トピックに対してデータを送信（発行）する側。<br>センサ値や制御指令などの情報を他のノードに通知する。<br>ノードは複数のトピックに対してPublisherを持てる。<br>[参考：Publisher - ROS 2 Docs](https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Py-Publisher-And-Subscriber.html) |
+| **Subscribe / Subscriber** | トピックからデータを受信（購読）する側。<br>他ノードの発行した情報を受け取って処理する。<br>センサデータの受信や、状態監視などに利用される。<br>[参考：Subscriber - ROS 2 Docs](https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Py-Publisher-And-Subscriber.html) |
+| **サービス（Service）** | リクエストとレスポンスによる一対一の通信。<br>ある処理を即時に呼び出し結果を得たいときに使われる。<br>同期的な処理に向いている通信手法。<br>[参考：Services - ROS 2 Docs](https://docs.ros.org/en/humble/Concepts/Services.html) |
+| **アクション（Action）** | 時間のかかる処理を非同期で実行する仕組み。<br>目標を送信し、フィードバックを受け取りつつ完了を待てる。<br>ナビゲーションなど継続的な処理に利用される。<br>[参考：Actions - ROS 2 Docs](https://docs.ros.org/en/humble/Concepts/Actions.html) |
+| **DDS（Data Distribution Service）** | ROS2の下位通信層として使われる標準的なPub/Subミドルウェア。<br>QoS設定により信頼性や遅延を制御可能。<br>複数ベンダー（Fast DDS、Cyclone DDSなど）がある。<br>[参考：ROS2とDDS](https://design.ros2.org/articles/ros_on_dds.html) |
+| **Launchファイル** | 複数のノードを一括起動するための設定スクリプト。<br>Pythonベースで柔軟に起動順序や引数を設定できる。<br>実験や運用時に欠かせない機能。<br>[参考：Launch files - ROS 2 Docs](https://docs.ros.org/en/humble/Tutorials/Intermediate/Launch/Creating-Launch-Files.html) |
+| **パッケージ（Package）** | ノードや設定ファイル、ライブラリなどをまとめた単位。<br>ROSのプロジェクトはすべてパッケージ単位で構成される。<br>再利用性や依存関係管理に優れる。<br>[参考：Packages - ROS 2 Docs](https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Creating-Your-First-ROS2-Package.html) |
+| **rclpy / rclcpp** | ROS2のPython（rclpy）およびC++（rclcpp）向けクライアントライブラリ。<br>それぞれの言語でノードや通信処理を記述する際に使用。<br>用途やパフォーマンス要件に応じて使い分ける。<br>[参考：rclpy - ROS 2 Docs](https://docs.ros.org/en/humble/How-To-Guides/Using-Parameters-In-A-Class-Python.html) |
 
-接続先のカチャカのIPアドレス設定を確認します．以下のコマンドを入力してエディタで設定ファイルを開きます．
 
-```bash
-gedit ~/.bashrc
-```
+---
 
-このコマンドを実行すると以下のようにエディタと共に，設定ファイル `.bashrc`が開きます．
-
-<img src="/imgs/vb_test1.png" width=70%>
-
-下までスクロールして以下の部分のIPアドレスを確認します．
-
-```bash
-export KACHAKA_IP=192.168.8.13
-```
-
-このIPアドレスが接続先のカチャカのIPアドレスとなります．必要に応じて適切なアドレスに設定してください．本講義で用いる場合は周りの人に聞きましょう．
-
-IPアドレスを修正したら， `保存`ボタンを押下して保存し，エディタを終了します．以下のコマンドを入力して設定を反映します．
-
-```bash
-source ~/.bashrc
-```
-
-## pingで接続を確認する
-パソコンとカチャカを接続したら以下のコマンドでパソコンとカチャカが正しく通信できることを確認します．
-
-```bash
-ping $KACHAKA_IP
-```
-
-これを実行すると以下のように何秒で相手から応答があったかが示されます．時間が示されていない場合は正しく通信ができていませんので接続先のIPアドレスやVirtualBoxのネットワークインタフェースの設定を確認してください．
-
-<img src="/imgs/vb_test2.png" widt=50%>
-
-## Rvizでカチャカの情報を表示してみる
-Rvizと呼ばれる様々な情報を可視化することのできるツールを用いてカチャカのセンサが捉えている情報などを表示してみましょう．
-
-パソコンとカチャカが接続されていることを確認して，ターミナルで以下のコマンドを入力します．
-
-```bash
-ros2 launch erasers_kachaka_bringup bringup.launch.py bringup_type:=0 use_rviz:=True
-```
-
-このコマンドを実行すると以下のような可視化ツールが起動します．
-
-<img src="/imgs/vb_test3.png" width=50%>
-
-しばらく待つとカチャカから情報が送られてきて，図のようなLRFの情報が表示されるようになります．また kachaka から「kachakaスタート」と発話します。
-
-> [!WARNING]
-> もし動作が重く作業に支障が出る場合は以下のコマンドを実施し Rviz を非表示にして起動してみてください。
-> ```bash
-> ros2 launch erasers_kachaka_bringup bringup.launch.py bringup_type:=0 use_rviz:=False
-> ```
+- [**チュートリアル一覧** に戻る](./toc.md)
+- [**次のチュートリアル** に移動する](./tutorial6.md)
