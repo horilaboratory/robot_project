@@ -49,7 +49,7 @@ Rvizと呼ばれる様々な情報を可視化することのできるツール�
 パソコンとカチャカが接続されていることを確認して，ターミナルで以下のコマンドを入力します．
 
 ```bash
-ros2 launch erasers_kachaka_bringup bringup.launch.py bringup_type:=0 use_rviz:=True
+ros2 launch erasers_kachaka_bringup bringup.launch.py use_rviz:=True
 ```
 
 このコマンドを実行すると以下のような可視化ツールが起動します．
