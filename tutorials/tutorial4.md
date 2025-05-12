@@ -72,3 +72,9 @@ ros2 launch erasers_kachaka_bringup bringup.launch.py bringup_type:=0 use_rviz:=
 > ```bash
 > ros2 launch erasers_kachaka_bringup bringup.launch.py bringup_type:=0 use_rviz:=False
 > ```
+
+
+---
+
+- [**チュートリアル一覧** に戻る](./toc.md)
+- [**次のチュートリアル** に移動する](./tutorial5.md)
