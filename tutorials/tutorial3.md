@@ -1,20 +1,28 @@
-# 3. Python をつかって ROS2 をあつかってみよう
-　このチュートリアルでは ROS2 で Python をつかいロボット（亀）を動かす方法を解説します。さっそくはじめましょう。
+# 3. ROS2 を Python で扱う
+　このドキュメントでは ROS2 で Python をつかいロボット（亀）を動かす方法を解説します。さっそくはじめましょう。
 
-　では亀を動かしてみましょう。そのためにはプログラムを書くファイルを作らなくてはいけませんね。VScode のツールバー上部にファイルエクスプローラーがあります。ここをクリックすると <font color="blue">「フォルダーを開く」</font> というボタンが表示されるのでここをクリックしてください。
-<img src="https://i.imgur.com/qQEfVCW.jpeg"/>
-次にこのように上部にどのフォルダ（ディレクトリ）を選択するのかを聞かれるので `~` などと入力してホームディレクトリを指定しましょう。決定したら <font color="blue">「OK」</font> をクリックしましょう。
-<img src="https://i.imgur.com/OdVRUbF.jpeg"/>
-すると、このようにホームディレクトリが VScode 左辺にエクスプローラとして表示されます。このエリアにあるフォルダに + アイコンがついているボタンをクリックすると、新規フォルダ（ディレクトリ）を作成することができます。試しに `python_scripts` という名前のディレクトリを作ってみましょう。
-<img src="https://i.imgur.com/bxbjVnc.jpeg"/>
-フォルダアイコンをクリックすると、このように入力欄があるので、ここにディレクトリ名を入力して、エンターキーを押すと。。。
-<img src="https://i.imgur.com/bhj4iXI.jpeg"/>
-このようにディレクトリが作成されます！
-<img src="https://i.imgur.com/4VEpQWw.jpeg"/>
-今度は作成したディレクトリを指定した状態でファイルに + アイコンがついたボタンをクリックして、新規ファイルを作成しましょう。
-<img src="https://i.imgur.com/mPQGg7l.jpeg"/>
-　するとこのようにファイル名を入力する項目が出るので、`turtle_control.py` というファイルを作成しましょう。この得必ず拡張子が `.py` でなければなりませんので気をつけてください。
-<img src="https://i.imgur.com/386k2IL.jpeg"/>
+## turtlesim を起動しよう
+　以下のコマンドを実行して **`turtlesim`** を起動しましょう。青色のウィンドウとカメが表示されたら成功です。以下のコマンドを実行してください。
+```bash
+ros2 run turtlesim turtlesim_node
+```
+<img src="https://i.imgur.com/7MyA3my.jpeg"/>
+
+このまま起動しているシェルは待機させて、次のセクションに進んでください。
+
+## 亀を Python で動かしてみよう
+　ROS2 については前回の資料で軽く説明しました。前回ではコマンドを使い ROS2 のインターフェースに触れましたが、ここでは Python を使い ROS2 を操作してみましょう。まずは Python を書くためのワークスペースとエディタを用意します。ターミナルを開いて以下のコマンドを実行し、ホームディレクトリ上に `scripts` というディレクトリを作成します。
+```bash
+mkdir ~/scripts
+```
+　次に、以下のコマンドを実行して `turtle_control.py` という空のファイルを `scripts` ディレクトリ内に作成します。
+```bash
+touch ~/scripts/turtle_control.py
+```
+　最後に以下のコマンドを実行して、プログラムコードエディタ VScode を使い `scripts` ディレクトリを開きます。
+```bash
+code ~/scripts
+```
 　これで準備は完了です。`turtle_control.py` に亀を動かすプログラムを書いていきましょう。先に示すと、以下のコードを書くと亀が円を描きながら動いてくれます。
 ```python
 import rclpy
@@ -180,4 +188,6 @@ rclpy.spin_once(node, timeout_sec=1.0)
 ```
 　この処理は ROS2 の反映を待機する関数です。これを書かないと publisher がうまく動いてくれません。
 
-
+---
+## 課題
+- turtle_control.py を編集して亀の動きを変えてみましょう。
