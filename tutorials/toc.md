@@ -7,6 +7,7 @@
 - [2. ROS2 に触れてみる](tutorial2.md)
 - [3. ROS2 Python をつかって ROS2 をあつかってみよう](tutorial3.md)
 - [4. Kachaka を起動させてみよう](tutorial4.md)
+- [5. ROS2 の用語早見表](tutorial5.md)
 
 ## WSL 用
 - [0. Ubuntu 22.04 を起動する方法、シャットダウンする方法](tutorial0.md)
