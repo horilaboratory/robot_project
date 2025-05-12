@@ -191,3 +191,9 @@ rclpy.spin_once(node, timeout_sec=1.0)
 ---
 ## 課題
 - turtle_control.py を編集して亀の動きを変えてみましょう。
+
+
+---
+
+- [**チュートリアル一覧** に戻る](./toc.md)
+- [**次のチュートリアル** に移動する](./tutorial4.md)
