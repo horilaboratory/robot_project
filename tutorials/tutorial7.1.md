@@ -30,7 +30,7 @@ class RobotControl(Node):
 　次に Class 内部の処理を書いていきます。まずはClass 内に関数 `__init__` を作成します。
 `__init__` は Class が呼び出された時にだけ１度実行される関数です。
 
->![TIP]
+>[!TIP]
 > `__init__` の `init` とは初期化を意味する `Initialize` を指し、Class が呼び出される時に自動的に実行されるとき、Class 内部で実装したい機能の初期化を行うことができます。
 
 > [!NOTE]

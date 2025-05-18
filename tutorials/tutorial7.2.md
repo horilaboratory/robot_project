@@ -101,17 +101,11 @@ msg.data = 'Hello ROS2!'  # 文字列データを設定
 | Twist | msg.linear.x | `msg.linear.x = 0.5` |
 
 ### 3. パブリッシュ実行
-　設定済みのMessageを実際に送信します：
+　設定済みのMessageを実際に送信します。以下のコードによって msg 内部で設定した Message データが `create_publisher()` で指定したトピックへ Publish されます。
 
 ```python
 self.publisher.publish(msg)  # Messageを送信
 ```
-
-> ![TIP]
-> **publish()メソッドの特徴**  
-> - 非ブロッキング処理（送信完了を待たずに次の処理へ）  
-> - 内部でMessageをコピーするため、送信後すぐにmsgを変更可能  
-> - QoS設定に基づいて配送管理
 
 ### 完全な送信処理の実装例
 　前節までのPublisherとタイマーと組み合わせた完全なコード：
@@ -130,10 +124,11 @@ def publish_greeting(self):
         self.publisher.publish(msg)
         
         # ログ出力
-        self.get_logger().info(f'送信完了: {msg.data}')
+        print('Message をパブリッシュしました。')
         
     except Exception as e:
-        self.get_logger().error(f'送信エラー: {str(e)}')
+        print('エラー発生')
+        print(e)
 ```
 
 ### よくあるエラーと対処法
@@ -270,6 +265,5 @@ ros2 topic echo /greeting
 
 ## おさらい
 - `create_publisher()`でPublisherを作成
-- Messageは`msg.data`に値を設定
 - `create_timer()`で定期的な送信を実現
 - ROS2の基本Message型は`std_msgs`モジュールに含まれる
