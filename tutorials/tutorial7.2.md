@@ -11,7 +11,7 @@ from std_msgs.msg import String  # 文字列Message型
 ```
 
 > [!NOTE]
-> `std_msgs`（スタンダード・Messageズ）はROS2の標準Messageパッケージで、基本的なデータ型が定義されています。  
+> `std_msgs`（スタンダード・メッセージズ）はROS2の標準Messageパッケージで、基本的なデータ型が定義されています。  
 > 他にも`Int32`（32bit整数）や`Float64`（64bit浮動小数点数）など様々な型があります。
 
 ## Publisherの作成方法
