@@ -64,6 +64,7 @@ class SampleSubscriber(Node):
         """ メッセージ受信時に実行される処理 """
         print(f'受信したメッセージ: {msg.data}')
 ```
+`greeting_callback` メソッドにはもう一つ `msg` という引数を用意します。最初に書く `self` は Class 内でメソッドとして扱われる関数には必須です。この `msg` 引数に Subscribe した Message データが入ります。
 
 > [!TIP]
 > コールバック関数の命名規則（別に必ず追う書かなければならないわけではないがこう書いておくとわかりやすい。）：  
@@ -75,7 +76,7 @@ class SampleSubscriber(Node):
 > 誤った例：`def greeting_callback():` → エラー発生
 
 ## 完全なコード
-　ubscriberを実装した完全なコードは以下の通りです。
+　Subscriberを実装した完全なコードは以下の通りです。
 
 ```python
 from std_msgs.msg import String
