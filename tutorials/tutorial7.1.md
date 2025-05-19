@@ -1,7 +1,7 @@
 # 7.1. Node を作ろう
-　ここからは実際に Python を使い Node を作成してみましょう。今から **`robot_control.py`** という名前で Python スクリプトを作成します。以下のコマンドを実行してプログラムエディタ VScode を使い robot_control.py を新規作成します。
+　ここからは実際に Python を使い Node を作成してみましょう。今から **`sample_publisher.py`** という名前で Python スクリプトを作成します。以下のコマンドを実行してプログラムエディタ VScode を使い sample_publisher.py を新規作成します。
 ```bash
-code robot_control.py
+code sample_publisher.py
 ```
 
 ## 必要なモジュールをインポートする
@@ -15,14 +15,14 @@ import rclpy # rclpy をインポート
 ## Node を作成する
 　Node の作成方法はいろいろありますが、最も汎用的な作成方法をここでは解説します。まずコード中に **Class（クラス）** というざっくり説明すると **複数の関数をまとめた大きな関数のようなもの** を作成します。Class についてわからない場合、とりあえずこういう感じで作っていくんだな〜程度で進んでもらって構いません。
 <br>
-　以下のスクリプトを続けて書いてください。以下のスクリプトは `RobotControl` という名前の Class を定義します。定義された `RobotControl` が **Class そのものです。**
+　以下のスクリプトを続けて書いてください。以下のスクリプトは `SamplePublisher` という名前の Class を定義します。定義された `SamplePublisher` が **Class そのものです。**
 ```python
-class RobotControl:
+class SamplePublisher:
 ```
 　次に作成した Class に Node を代入します。この作業は **作成した Class を ROS2 Node として扱うための重要なプロセス** です。以下のように作成したスクリプトに手を加えます。
 ```python
 # (Node) を追加
-class RobotControl(Node):
+class SamplePublisher(Node):
 ```
 
 ---
@@ -38,7 +38,7 @@ class RobotControl(Node):
 
 メソッド `__init__` は以下のように記述します。引数に必ず `self` を書くのを忘れないでください。
 ```python
-class RobotControl(Node):
+class SamplePublisher(Node):
     def __init__(self):
 ```
 
@@ -46,20 +46,20 @@ class RobotControl(Node):
 
 　次に `__init__` 内部で Node の初期化を行います。以下のコードを続けて書いてください。
 ```python
-class RobotControl(Node):
+class SamplePublisher(Node):
     def __init__(self):
         # Node の初期化 & Node 名の定義
-        super().__init__('robot_control_node')
+        super().__init__('sample_publisher_node')
 ```
-`super().__init__('robot_control_node')` は、**robot_control_node という名前の Node を作成する** という意味です。このままだと Node がちゃんと作られているかどうかよくわからないのでメソッド __init__ 内部で以下のようにターミナル上に状況を出力する処理を追加すると良いでしょう。
+`super().__init__('sample_publisher_node')` は、**sample_publisher_node という名前の Node を作成する** という意味です。このままだと Node がちゃんと作られているかどうかよくわからないのでメソッド __init__ 内部で以下のようにターミナル上に状況を出力する処理を追加すると良いでしょう。
 ```python
-class RobotControl(Node):
+class SamplePublisher(Node):
     def __init__(self):
         # Node の初期化 & Node 名の定義
-        super().__init__('robot_control_node')
+        super().__init__('sample_publisher_node')
 
         #処理が行われていることを通知
-        print('Node robot_control_node を作成しました。')
+        print('Node sample_publisher_node を作成しました。')
 ```
 
 ---
@@ -68,7 +68,7 @@ class RobotControl(Node):
 ```python
 if __name__ == '__main__':
     rclpy.init() # ROS2 をこのプログラムから制御するために rclpy モジュールを初期化する。
-    node = RobotControl() # Node を宣言する処理が書かれている class を呼び出す。ここで Node が作成される
+    node = SamplePublisher() # Node を宣言する処理が書かれている class を呼び出す。ここで Node が作成される
     rclpy.spin(node) # 作成された　Node を実行し続けさせる
 ```
 
@@ -79,19 +79,19 @@ if __name__ == '__main__':
 > import rclpy # rclpy をインポート  
 >
 >
-> class RobotControl(Node):  
+> class SamplePublisher(Node):  
 >     def __init__(self):  
 >         # Node の初期化 & Node 名の定義  
->         super().__init__('robot_control_node')  
+>         super().__init__('sample_publisher_node')  
 >
 >         #処理が行われていることを通知  
->         print('Node robot_control_node を作成しました。')  
+>         print('Node sample_publisher_node を作成しました。')  
 >
 >
 > # プログラムを実行  
 > if __name__ == '__main__':  
 >     rclpy.init() # ROS2 をこのプログラムから制御するために rclpy モジュールを初期化する。  
->     node = RobotControl() # Node を宣言する処理が書かれている class を呼び出す。ここで Node が作成される  
+>     node = SamplePublisher() # Node を宣言する処理が書かれている class を呼び出す。ここで Node が作成される  
 >     rclpy.spin(node) # 作成された　Node を実行し続けさせる
 > ```
 
@@ -101,9 +101,9 @@ if __name__ == '__main__':
 <br>
 　次に `rclpy.init()` は、ROS2 をこの Python スクリプトから操作する時に必要な rclpy ライブラリを初期化する処理です。**必ずこれを初めに実行しないと Python 内部で Node を作成し、ROS2 操作することができません。**
 <br>
-　そして `node = RobotControl()` は Class RobotControl を呼び出す処理です。Class は任意の変数に格納されることを「インスタンス化」といい、変数が格納されることで Class 内部の処理が実行できるようになります。この瞬間メソッド `__init__` が実行されるため、この時点で Node が作成されるというわけです。
+　そして `node = SamplePublisher()` は Class SamplePublisher を呼び出す処理です。Class は任意の変数に格納されることを「インスタンス化」といい、変数が格納されることで Class 内部の処理が実行できるようになります。この瞬間メソッド `__init__` が実行されるため、この時点で Node が作成されるというわけです。
 <br>
-　インスタンス化した Class RobotControl は `node` という変数に格納されており、Node を作成した Class RobotControl は ROS2 Node と同じ存在になります。この変数を `rclpy.spin(node)` のように `rclpy.spin()` のなかに代入することで作成したノードを継続的に実行状態に保つことができます。`rclpy.spin()` はノードが終了するまで処理をブロックし、ノードをアクティブな状態に維持する重要な関数です。
+　インスタンス化した Class SamplePublisher は `node` という変数に格納されており、Node を作成した Class SamplePublisher は ROS2 Node と同じ存在になります。この変数を `rclpy.spin(node)` のように `rclpy.spin()` のなかに代入することで作成したノードを継続的に実行状態に保つことができます。`rclpy.spin()` はノードが終了するまで処理をブロックし、ノードをアクティブな状態に維持する重要な関数です。
 
 ## プログラムを実行してみよう
 　このチュートリアルで作成したコードの全体は以下のとおりです。
@@ -114,7 +114,7 @@ import rclpy  # ROS2のPythonクライアントライブラリ
 
 
 # ロボット制御用のカスタムノードクラス
-class RobotControl(Node):
+class SamplePublisher(Node):
     def __init__(self):
         """
         ノードの初期化コンストラクタ
@@ -122,11 +122,11 @@ class RobotControl(Node):
         """
         
         # 親クラス(Node)の初期化 + ノード名の設定
-        # 'robot_control_node'という名前でノードを登録
-        super().__init__('robot_control_node')
+        # 'sample_publisher_node'という名前でノードを登録
+        super().__init__('sample_publisher_node')
 
         # デバッグ用メッセージ（ターミナルに表示）
-        print('robot_control_node が起動しました')
+        print('sample_publisher_node が起動しました')
 
 
 # メインプログラム ========================================
@@ -138,23 +138,23 @@ if __name__ == '__main__':
     # ROS2通信機能の初期化（必須処理）
     rclpy.init()
     
-    # RobotControlクラスからノードインスタンスを生成
+    # SamplePublisherクラスからノードインスタンスを生成
     # → __init__()が自動実行され、ノードが登録される
-    node = RobotControl()
+    node = SamplePublisher()
     
     # ノードを継続実行（Ctrl+Cで終了するまでループ）
     # spin()はROS2ノードの「心臓部」のようなもの
     rclpy.spin(node)
 ```
-プログラム `robot_control.py` を保存して、ターミナル上で以下のコマンドを実行して作成したプログラムを実行してみましょう。
+プログラム `sample_publisher.py` を保存して、ターミナル上で以下のコマンドを実行して作成したプログラムを実行してみましょう。
 ```bash
-python3 robot_control.py
+python3 sample_publisher.py
 ```
-すると、以下のようにターミナル上で `robot_control_node が起動しました` とテキストが表示されます。
+すると、以下のようにターミナル上で `sample_publisher_node が起動しました` とテキストが表示されます。
 ```bash
-$ python3 robot_control.py
+$ python3 sample_publisher.py
 
-robot_control_node が起動しました
+sample_publisher_node が起動しました
 ```
 `rclpy,spin(node)` によってプログラムは停止せず動作し続けます。この状態で新たなターミナルを開き、以下のコマンドを実行して現在実行されている ROS2 Node 一覧を表示してみましょう。
 ```bash
@@ -164,18 +164,18 @@ ros2 node list
 ```bash
 $ ros2 node list
 
-/robot_control_node
+/sample_publisher_node
 ```
 
 ---
 
-これで Node の作成方法に関する解説は以上です。`robot_control.py` を実行しているターミナル上でプログラム停止ショートカットキー「Control + C」でプログラムを停止しましょう。
+これで Node の作成方法に関する解説は以上です。`sample_publisher.py` を実行しているターミナル上でプログラム停止ショートカットキー「Control + C」でプログラムを停止しましょう。
 
 > [!NOTE]
 > プログラムを停止すると、以下のように大量のエラーメッセージが表示されることがあります。これは Node を適切な方法で停止しなかったことで発生したエラーです。特に支障はありませんので気にしないでください。
 > ```bash
 > ^CTraceback (most recent call last):  
->   File "/ws/src/robot_control.py", line 35, in <module>  
+>   File "/ws/src/sample_publisher.py", line 35, in <module>  
 >     rclpy.spin(node)  
 >   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 226, in spin  
 >     executor.spin_once()  
@@ -204,9 +204,9 @@ $ ros2 node list
 
 2. **ノードクラスの定義**
    ```python
-   class RobotControl(Node):
+   class SamplePublisher(Node):
        def __init__(self):
-           super().__init__('robot_control_node')
+           super().__init__('sample_publisher_node')
            print('Nodeが起動しました')
    ```
    - `Node`クラスを継承してカスタムノードを作成
@@ -217,7 +217,7 @@ $ ros2 node list
    ```python
    if __name__ == '__main__':
        rclpy.init()
-       node = RobotControl()
+       node = SamplePublisher()
        rclpy.spin(node)
    ```
    - `rclpy.init()`：ROS2システムの初期化（必須）
@@ -226,7 +226,7 @@ $ ros2 node list
 
 4. **実行と確認**
    ```bash
-   python3 robot_control.py
+   python3 sample_publisher.py
    ros2 node list
    ```
    - プログラム実行後、`ros2 node list`でノード確認

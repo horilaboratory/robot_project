@@ -367,7 +367,7 @@ ros2 node list
 
 ```bash
 /camera_driver
-/robot_control
+/sample_publisher
 ```
 
 ---
@@ -377,7 +377,7 @@ ros2 node list
 * `/camera_driver`
   このノードは、カメラのドライバとして機能しているノードであり、カメラに関連する処理を担当しています。
 
-* `/robot_control`
+* `/sample_publisher`
   このノードは、ロボットの動作を制御するためのノードです。ロボットのモーター制御やセンサーの処理を行っている可能性があります。
 
 ---
@@ -403,10 +403,10 @@ ros2 node list
 ### 🧪 使用例
 
 ```bash
-ros2 node info /robot_control
+ros2 node info /sample_publisher
 ````
 
-このコマンドは、`/robot_control` というノードに関する詳細情報を表示します。例えば、以下のような情報が表示されます。
+このコマンドは、`/sample_publisher` というノードに関する詳細情報を表示します。例えば、以下のような情報が表示されます。
 
 ---
 
@@ -421,31 +421,31 @@ ros2 node info /robot_control
 ### 📥 出力例
 
 ```bash
-Node name: /robot_control
+Node name: /sample_publisher
 Topics: 
   /cmd_vel [geometry_msgs/msg/Twist]
   /odom [nav_msgs/msg/Odometry]
 Services: 
-  /robot_control/set_pose
+  /sample_publisher/set_pose
 Actions: 
-  /robot_control/move
+  /sample_publisher/move
 ```
 
 ---
 
 ### 🔍 出力結果の見方
 
-* `Node name: /robot_control`
-  ノード名は `/robot_control` です。このノードが提供するサービスやトピック、アクションの情報が以下に続きます。
+* `Node name: /sample_publisher`
+  ノード名は `/sample_publisher` です。このノードが提供するサービスやトピック、アクションの情報が以下に続きます。
 
 * `Topics:`
   このノードがパブリッシュ（またはサブスクライブ）しているトピックのリストが表示されます。例えば、`/cmd_vel` はロボットの速度制御に関連するトピックで、`geometry_msgs/msg/Twist` メッセージ型が使われています。
 
 * `Services:`
-  このノードが提供しているサービスのリストが表示されます。サービスは、リクエストとレスポンスの通信を行うエンドポイントです。例では、`/robot_control/set_pose` サービスが提供されています。
+  このノードが提供しているサービスのリストが表示されます。サービスは、リクエストとレスポンスの通信を行うエンドポイントです。例では、`/sample_publisher/set_pose` サービスが提供されています。
 
 * `Actions:`
-  このノードが提供しているアクションのリストが表示されます。アクションは長時間実行される操作に使用されるエンドポイントです。ここでは、`/robot_control/move` というアクションがあります。
+  このノードが提供しているアクションのリストが表示されます。アクションは長時間実行される操作に使用されるエンドポイントです。ここでは、`/sample_publisher/move` というアクションがあります。
 
 ---
 

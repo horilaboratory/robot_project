@@ -41,10 +41,10 @@ self.create_publisher(
 　これらの知識をもとに、Publisherを実装してみましょう。
 
 ```python
-class RobotControl(Node):
+class SamplePublisher(Node):
     def __init__(self):
-        super().__init__('robot_control_node')
-        print('Node robot_control_node を作成しました。')
+        super().__init__('sample_publisher_node')
+        print('Node sample_publisher_node を作成しました。')
         
         # Publisherの作成
         self.publisher = self.create_publisher(
@@ -180,7 +180,7 @@ self.create_timer(
 　先ほど作成した`publish_greeting()`メソッドを1秒間隔で実行する設定例です。
 
 ```python
-class RobotControl(Node):
+class SamplePublisher(Node):
     def __init__(self):
         # ...（前回のPublisher作成コード...）
         
@@ -227,10 +227,10 @@ from rclpy.node import Node
 import rclpy
 from std_msgs.msg import String
 
-class RobotControl(Node):
+class SamplePublisher(Node):
     def __init__(self):
-        super().__init__('robot_control_node')
-        print('Node robot_control_node を作成しました。')
+        super().__init__('sample_publisher_node')
+        print('Node sample_publisher_node を作成しました。')
         
         self.publisher = self.create_publisher(String, '/greeting', 10)
         print('/greeting トピックのPublisherを初期化しました')
@@ -246,7 +246,7 @@ class RobotControl(Node):
 
 if __name__ == '__main__':
     rclpy.init()
-    node = RobotControl()
+    node = SamplePublisher()
     rclpy.spin(node)
 ```
 
@@ -255,7 +255,7 @@ if __name__ == '__main__':
 1. **プログラム実行**<br>
 ターミナル上で以下のコマンドを実行してプログラムを起動します。
 ```bash
-python3 robot_control.py
+python3 sample_publisher.py
 ```
 すると１秒おきに Topic を Publish します。
 
@@ -273,3 +273,13 @@ ros2 topic echo /greeting
 - `create_publisher()`でPublisherを作成
 - `create_timer()`で定期的な送信を実現
 - ROS2の基本Message型は`std_msgs`モジュールに含まれる
+
+### チャレンジ
+以下の作業に挑戦してみましょう。
+
+- Publish する Topic 名を変更してみよう。
+- Publish する周期を変更してみよう。（例：1 Hz -> 10 Hz）
+
+---
+
+次のチュートリアル [7.3.Subscriber を実装しよう](tutorial7.3.md) では今回作成した Node に Publisher 機能を実装し、Topic `/greeting` をサブスクライブする方法を解説します。
