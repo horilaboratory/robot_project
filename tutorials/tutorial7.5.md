@@ -94,7 +94,7 @@ import cv2
 > [!WARNING]
 > モジュール不足時のエラー例：  
 > - `ImportError: No module named 'cv_bridge'`  
->   → `sudo apt install ros-<humble-cv-bridge`で解決  
+>   → `sudo apt install ros-humble-cv-bridge`で解決  
 
 ---
 
