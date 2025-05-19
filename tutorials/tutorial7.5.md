@@ -10,7 +10,6 @@
 pip install opencv-python
 ```
 
-```markdown
 ## モジュールインポート
 　まずは Node を作成するために必要な以下のモジュールをインポートしましょう。
 ```python
