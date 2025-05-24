@@ -270,7 +270,7 @@ class CameraViewer(Node):
 
 
 if __name__ == '__main__':
-    rclpy.init(args=args)
+    rclpy.init()
     node = CameraViewer()
     rclpy.spin(node)
 ```
