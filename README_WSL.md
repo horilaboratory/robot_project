@@ -1,17 +1,16 @@
-#  ROS2ロボット開発入門(VirtualBox編)
+#  ROS2ロボット開発入門(WSL)
 ## 概要
-本ドキュメントはROS2とカチャカを利用したロボット開発のための入門資料である．開発環境はVirtualBoxを想定している．</br>
+本ドキュメントはROS2とカチャカを利用したロボット開発のための入門資料である．
+開発環境はWSL2の利用を想定している．
 
-Windows Subsystem for Linux (WSL)を用いた開発環境を利用したい方はこちら↓
-- [WSL編](/README_WSL.md)
+VirtualBoxを用いた開発環境を利用したい方はこちら↓
+- [VirtualBox編](/README.md)
 
 ## 環境セットアップ
-VirtualBoxもしくはWSL2を利用したロボット開発環境のセットアップ方法については以下のリンクを参照してください．
-- [VirtualBoxでロボット開発を始める](/windows/vbox.md)
+- [WSLでロボット開発をはじめる](/windows/hostsetup.md)
 
 ## チュートリアル目次
-- [0. VM を起動して kachaka に接続する方法](/tutorials/vm_tutorial0.md)
-- [0. WSLでUbuntu 22.04 を起動する方法、シャットダウンする方法](tutorial0.md)
+- [0. WSLでUbuntu 22.04 を起動する方法、シャットダウンする方法](/tutorials/tutorial0.md)
 - [1. Linux コマンド Bash に触れよう](/tutorials/tutorial1.md)
 - [2. ROS2 に触れてみる](/tutorials/tutorial2.md)
 - [3. ROS2 Python をつかって ROS2 をあつかってみよう](/tutorials/tutorial3.md)
