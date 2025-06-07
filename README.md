@@ -9,7 +9,7 @@ Windows Subsystem for Linux (WSL)を用いた開発環境を利用したい方�
 VirtualBoxもしくはWSL2を利用したロボット開発環境のセットアップ方法については以下のリンクを参照してください．
 - [VirtualBoxで開発環境をセットアップする](/windows/vbox.md)
 
-## チュートリアル目次
+## ROSチュートリアル目次
 - [0. VM を起動して kachaka に接続する方法](/tutorials/vm_tutorial0.md)
 - [0. WSLでUbuntu 22.04 を起動する方法、シャットダウンする方法](/tutorials/tutorial0.md)
 - [1. Linux コマンド Bash に触れよう](/tutorials/tutorial1.md)
