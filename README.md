@@ -7,7 +7,7 @@ Windows Subsystem for Linux (WSL)を用いた開発環境を利用したい方�
 
 ## 環境セットアップ
 VirtualBoxもしくはWSL2を利用したロボット開発環境のセットアップ方法については以下のリンクを参照してください．
-- [VirtualBoxでロボット開発を始める](/windows/vbox.md)
+- [VirtualBoxで開発環境をセットアップする](/windows/vbox.md)
 
 ## チュートリアル目次
 - [0. VM を起動して kachaka に接続する方法](/tutorials/vm_tutorial0.md)
