@@ -9,12 +9,12 @@
 ## Kachaka の LiDAR センサーの仕様
 　Kachaka には本体前面上部にある丸いリング内に LiDAR センサーが内蔵されています．
 
-<img src='imgs/kachaka_lidar.png'/>
+<img width=50% src='/imgs/kachaka_lidar.png'/>
 
 Kachaka からの LiDAR センサー情報は ROS2 トピック `/er_kachaka/lidar/scan` という名前で `sensor_msgs/msg/LaserScan` というメッセージ型でパブリッシュされます．
 視覚化ツール Rviz2 で確認すると，このようにロボット周囲の障害物をパーティクルとして表示してくれます．
 
-<img src='imgs/kachaka_lidar_scan.png'/>
+<img width=80% src='/imgs/kachaka_lidar_scan.png'/>
 
 　Kachaka の LiDAR センサーの仕様は少し独特て，通常の LiDAR センサーは一定の量のデータをスキャンしますが，こちらは状況に応じて取得データ量が変動します．
 
