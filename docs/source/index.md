@@ -6,3 +6,5 @@
 :numbered:
 
 install/index
+boot/index
+tutorial/index
