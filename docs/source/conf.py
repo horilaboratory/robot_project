@@ -18,6 +18,7 @@ extensions = [
     'sphinx_rtd_theme',
     'sphinx_tabs.tabs',
     'sphinx_copybutton',
+    'sphinx_design',
     'myst_parser'
 ]
 
