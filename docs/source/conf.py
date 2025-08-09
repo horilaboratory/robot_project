@@ -19,6 +19,8 @@ extensions = [
     'sphinx_tabs.tabs',
     'sphinx_copybutton',
     'sphinx_design',
+    'sphinx.ext.autosectionlabel',
+    'sphinx_togglebutton',
     'myst_parser'
 ]
 
