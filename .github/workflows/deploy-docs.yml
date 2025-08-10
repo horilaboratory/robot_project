@@ -1,0 +1,62 @@
+name: Deploy Sphinx Docs to GitHub Pages
+
+on:
+  push:
+    branches:
+      - pageaction
+  workflow_dispatch:
+
+# ワークフローが必要とする権限を設定
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  deploy-docs:
+    name: Build and Deploy Docs
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      # 1. リポジトリのコードをチェックアウト
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Pythonのセットアップ
+      # pyproject.toml に記載されたPythonバージョンを使用
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version-file: 'pyproject.toml'
+
+      # 3. uvのインストールとキャッシュの有効化
+      - name: Install uv
+        uses: astral-sh/setup-uv@v1
+        with:
+          # CI/CDのパフォーマンス向上のためキャッシュを有効化
+          enable-cache: true
+
+      # 4. Python依存関係のインストール
+      # uv.lock ファイルに基づいて、Sphinxやテーマなどをインストール
+      - name: Install dependencies
+        run: uv sync --frozen
+
+      # 5. Sphinxドキュメントのビルド
+      # docs/Makefile を使ってHTMLを生成
+      - name: Build Sphinx docs
+        run: make -C docs html
+
+      # 6. ビルドした成果物（HTML）をアップロード
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # アップロードするディレクトリを指定
+          path: docs/build/html
+
+      # 7. GitHub Pagesへデプロイ
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
