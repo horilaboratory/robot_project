@@ -45,9 +45,8 @@ jobs:
         run: uv sync --frozen
 
       # 5. Sphinxドキュメントのビルド
-      # docs/Makefile を使ってHTMLを生成
       - name: Build Sphinx docs
-        run: make -C docs html
+        run: uv run make -C docs html
 
       # 6. ビルドした成果物（HTML）をアップロード
       - name: Upload artifact
