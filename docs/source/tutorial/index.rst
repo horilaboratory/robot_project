@@ -8,3 +8,4 @@ ROS2 チュートリアル一覧
 
     ./create_pkg
     ./create_publisher
+    ./create_subscriber
