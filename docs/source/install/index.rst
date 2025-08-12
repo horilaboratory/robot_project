@@ -92,7 +92,7 @@ ROS2 運用用ワークスペースを用意する
 
 .. code:: bash
 
-    git clone git@github.com:GAI-313/ros2_guidance_ws.git
+    git clone https://github.com/GAI-313/ros2_guidance_ws.git
 
 　これで環境構築は完了しました．
 
