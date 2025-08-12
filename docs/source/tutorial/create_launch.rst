@@ -97,17 +97,6 @@ Launch 関数 ``generate_launch_description``
 
         practice_publisher_node = Node()
 
-        return ld.. code:: python
-
-    #! /usr/bin/env python3
-    from launch import LaunchDescription
-    from launch_ros.actions import Node
-
-    def generate_launch_description():
-        ld = LaunchDescription()
-
-        practice_publisher_node = Node()
-
         return ld
 
 つぎに ``Node`` クラスの引数に必要な値をいれて起動したいノードを定義します．ここではまず ``practice_publisher_node`` を起動するための ``Node`` を定義します．
