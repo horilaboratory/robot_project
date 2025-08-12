@@ -21,6 +21,7 @@ extensions = [
     'sphinx_design',
     'sphinx.ext.autosectionlabel',
     'sphinx_togglebutton',
+    'sphinx_comments',
     'myst_parser'
 ]
 
@@ -40,6 +41,10 @@ html_logo = "_static/logo.png"
 source_suffix = {
     '.rst': 'restructuredtext',
     '.md': 'markdown',
+}
+# comment func
+comments_config = {
+   "hypothesis": True
 }
 
 copybutton_prompt_text = r"$ |>>> |\.\.\. "
