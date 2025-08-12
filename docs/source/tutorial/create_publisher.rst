@@ -372,7 +372,7 @@ Publisher を作成する
 
 　ここでは ``practice_publisher_node`` という名前で先ほど作成したプログラムをノードとして登録しましょう．以下のように ``entry_points`` を編集します．
 
-.. node:: python
+.. code:: python
 
     entry_points={
         'console_scripts': [
