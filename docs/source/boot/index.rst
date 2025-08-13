@@ -41,6 +41,12 @@ ROS2 用 Docker コンテナを起動する
 
             open -a XQuartz
 
+        　次に Docker Desktop を起動するため，ターミナルにて以下のコマンドを実行してください．
+
+        .. code:: bash
+
+            open -a docker
+
         　そして以下のコマンドを実行してコンテナを起動します．
 
         .. code:: bash
