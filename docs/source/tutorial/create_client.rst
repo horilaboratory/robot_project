@@ -124,9 +124,8 @@ Service Client とは
         else:
             client_node.get_logger().info('Service call failed %r' % (client_node.future.exception(),))
 
-        # ノードを破棄し，rclpyをシャットダウン
+        # ノードを破棄して正常に終了する
         client_node.destroy_node()
-        rclpy.shutdown()
 
     if __name__ == '__main__':
         main()
@@ -290,8 +289,6 @@ Service Client とは
 
         # ノードを安全に破棄する
         client_node.destroy_node()
-        # rclpyをシャットダウンしてリソースを解放する
-        rclpy.shutdown()
 
 
     # このスクリプトが直接実行された場合にのみ、以下のブロック内のコードが実行される
