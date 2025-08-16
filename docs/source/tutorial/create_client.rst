@@ -223,40 +223,40 @@ Service Client とは
 
     # Nodeクラスを継承して、オリジナルのService Clientノードクラスを定義
     class PracticeServiceClient(Node):
-            # クラスのインスタンスが作成されるときに自動的に呼び出される初期化メソッド (コンストラクタ)
-            def __init__(self):
-                # 親クラス (Node) のコンストラクタを呼び出し、ノード名を 'practice_service_client' として登録
-                super().__init__('practice_service_client')
+        # クラスのインスタンスが作成されるときに自動的に呼び出される初期化メソッド (コンストラクタ)
+        def __init__(self):
+            # 親クラス (Node) のコンストラクタを呼び出し、ノード名を 'practice_service_client' として登録
+            super().__init__('practice_service_client')
 
-                # Service Clientを作成する
-                # self.create_client() メソッドは2つの引数を取る
-                self.cli = self.create_client(
-                    AddTwoInts,       # 第1引数: サービスの型 (AddTwoInts型)
-                    'add_two_ints'    # 第2引数: サービス名 (この名前のサーバーを呼び出す)
-                )
+            # Service Clientを作成する
+            # self.create_client() メソッドは2つの引数を取る
+            self.cli = self.create_client(
+                AddTwoInts,       # 第1引数: サービスの型 (AddTwoInts型)
+                'add_two_ints'    # 第2引数: サービス名 (この名前のサーバーを呼び出す)
+            )
 
-                # サーバーが起動してサービスが利用可能になるまで1秒ごとに待機する
-                while not self.cli.wait_for_service(timeout_sec=1.0):
-                    self.get_logger().info('service not available, waiting again...')
-                
-                # リクエストメッセージのオブジェクトをあらかじめ生成しておく
-                self.req = AddTwoInts.Request()
+            # サーバーが起動してサービスが利用可能になるまで1秒ごとに待機する
+            while not self.cli.wait_for_service(timeout_sec=1.0):
+                self.get_logger().info('service not available, waiting again...')
             
-            # リクエストを送信するためのメソッド
-            def send_request(self, a, b):
-                # リクエストオブジェクトの 'a' と 'b' フィールドに引数の値を設定
-                self.req.a = a
-                self.req.b = b
-                
-                # サービスを非同期で呼び出し、'future' オブジェクトを受け取る
-                # 'future' は、未来に結果が格納されることを約束するもの
-                self.future = self.cli.call_async(self.req)
+            # リクエストメッセージのオブジェクトをあらかじめ生成しておく
+            self.req = AddTwoInts.Request()
+        
+        # リクエストを送信するためのメソッド
+        def send_request(self, a, b):
+            # リクエストオブジェクトの 'a' と 'b' フィールドに引数の値を設定
+            self.req.a = a
+            self.req.b = b
+            
+            # サービスを非同期で呼び出し、'future' オブジェクトを受け取る
+            # 'future' は、未来に結果が格納されることを約束するもの
+            self.future = self.cli.call_async(self.req)
 
-                # 'future' が完了する (サーバーからレスポンスが返ってくる) までノードの処理を待機させる
-                rclpy.spin_until_future_complete(self, self.future)
+            # 'future' が完了する (サーバーからレスポンスが返ってくる) までノードの処理を待機させる
+            rclpy.spin_until_future_complete(self, self.future)
 
-                # 'future' から実際の結果 (レスポンス) を取り出して返す
-                return self.future.result()
+            # 'future' から実際の結果 (レスポンス) を取り出して返す
+            return self.future.result()
 
 
     # プログラムのメイン処理を定義する関数
