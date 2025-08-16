@@ -21,148 +21,70 @@ Action Server とは
 * **Feedback (フィードバック)** : サーバーがゴールを達成するまでの途中経過．（例：「目標まであと50%」，「現在角度30度」）
 * **Result (リザルト)** : タスクが完了したときの最終結果．（例：「目標座標に到達しました」，「エラーにより失敗しました」）
 
-eコマースでの注文に例えると，**ゴール** は「商品を注文する」こと，**フィードバック** は「注文を確認しました」「商品を発送しました」といったステータスの更新，そして**リザルト** は「商品がお手元に届きました」という最終報告に相当します．今回は，指定された数までフィボナッチ数列を計算するAction Serverを作成します．
+eコマースでの注文に例えると，**ゴール** は「商品を注文する」こと，**フィードバック** は「注文を確認しました」「商品を発送しました」といったステータスの更新，そして **リザルト** は「商品がお手元に届きました」という最終報告に相当します．今回は，指定された数までフィボナッチ数列を計算するAction Serverを作成します．
 
 *******************************************
 Action インターフェースをインストールする
 *******************************************
 
-　このチュートリアルでは ``Fibonacci`` という Action メッセージインターフェースを使用した Action サーバーを作成します．では，以下のコマンドを実行して ``Fibonacci`` という名前の Action インターフェースがあるかどうか探してみましょう．
-
-　以下のコマンドは現在利用可能な ROS2 Message, Service, Action で使われるインターフェース一覧を表示します．
+　このチュートリアルでは ``Fibonacci`` という Action メッセージインターフェースを使用します．まず，このインターフェースが利用可能かを確認しましょう．
 
 .. code:: bash
-
-    ros2 interface list
-
-.. hint::
-
-    　しかしあまりにもたくさんのインターフェースが表示されるため探したいインターフェースがあるかどうかよくわかりませんよね．以下のように末尾に ``| grep <検索したい文字列>`` のように文字列フィルタリングを適応することで探したい項目が存在するかどうか確認することができます．
-
-    .. code:: bash
-
-        ros2 interface list | grep Fibonacci
-
-　もし Docker コンテナを使い ROS2 のワークショップに参加している方は Fibonacci が存在しないことを確認できるでしょう．もしローカルで ROS2 を使用している場合はもしかしたら Fibonacci インターフェースが存在するかもしれません．
-
-　そこで ROS2 パッケージ管理でよく使う **rosdep（ロスデプ）** を使い必要なパッケージをインストールして依存関係を解決する方法を解説しましょう．
-
-***********************************
-インストールしたいパッケージを探す
-***********************************
-
-　Fibonacci インターフェースを持つパッケージをインストールするために，rosdep という依存関係解決ツールを使ってみましょう．これを使うことで，例えば他の ROS2 環境で開発したパッケージを使用するときに rosdep を使うことですぐに依存関係を解決することができます．
-
-　Fibonacci インターフェースは ``action_tutorials_interfaces`` というパッケージに内包されています．以下のコマンドを実行して rosdep からこのパッケージがインストール可能かどうか確かめてみましょう．
-
-　初めて rosdep を使う場合は以下のコマンドを実行して rosdep を初期化してください．しかし，Docker コンテナを利用している方はこの作業はすでに行われているためエラーが発生しますが，正常な反応なので気にする必要はありません．
-
-.. code:: bash
-
-    sudo rosdep init
-
-　次に以下のコマンドを実行して rosdep を最新の状態にアップデートしてください．
-
-.. code:: bash
-
-    rosdep update
-
-　次に以下のコマンドを実行してパッケージ ``action_tutorials_interfaces`` がインストールできるかどうか確認します．応答があればそのパッケージは Ubuntu のパッケージ管理ツール ``apt`` からインストール可能であることを示しています．
-
-.. code:: bash
-
-    rosdep db | grep action_tutorials_interfaces
-
-.. hint::
-
-    上記のコマンドのように ``rosdep db | grep 探したいパッケージ名`` を実行することで rosdep からインストール可能なパッケージを検索することができます．
-
-　上記のコマンドを実行すると，以下のような応答があるでしょう．
-
-.. code::
-
-    action_tutorials_interfaces -> ros-humble-action-tutorials-interfaces
-
-これの読み方は以下のとおりです．右に書かれているパッケージ名で ``apt install`` することで簡単に該当のパッケージをインストールすることができます．
-
-.. code::
-
-    パッケージ名 -> apt でインストールできるパッケージ名
-
-このまま ``sudo apt install ros-humble-action-tutorials-interfaces`` を実行してもいいのですがここでは続けて ``package.xml`` と ``rosdep`` を使い依存関係となるパッケージをインストールする方法を解説します．
-
-********************
-依存関係を解決する
-********************
-
-　依存関係というのはどういうことかというと，ようはパッケージ A を動かすためにはパッケージ B が必要な場合，**パッケージ A はパッケージ B と依存関係にある** ことを示しています．
-ROS2 パッケージではそんな依存関係を示す場所として ``package.xml`` が用意されています．作成した ``ros2_workshop`` パッケージの package.xml を開いてみましょう．
-
-　``<package>`` タグ内に以下のように依存関係となるパッケージ ``action_tutorials_interfaces`` を追記しましょう．
-
-.. code:: diff
-
-    <package format="3">
-      <name>ros2_workshop</name>
-      <version>0.0.0</version>
-      <description>TODO: Package description</description>
-      <maintainer email="root@todo.todo">root</maintainer>
-      <license>TODO: License declaration</license>
-
-      <test_depend>ament_copyright</test_depend>
-      <test_depend>ament_flake8</test_depend>
-      <test_depend>ament_pep257</test_depend>
-      <test_depend>python3-pytest</test_depend>
-
-    + <depend>action_tutorials_interfaces</depend>
-
-      <export>
-        <build_type>ament_python</build_type>
-      </export>
-    </package>
-
-.. hint::
-
-    このように package.xml に依存関係を追記したい場合は以下のように書きます．
-
-    .. code:: xml
-
-        <depend>パッケージ名</depend>
-
-　これで **パッケージ ros2_workshop はパッケージ action_tutorials_interfaces に依存している** という定義ができました．
-
-　次に依存関係を解決するコマンドを実行する前に，一度以下のコマンドを実行して apt リポジトリを更新しましょう．なぜこれをしなければならないかというと，rosdep は apt をラップしているからです．
-
-.. code:: bash
-
-    sudo apt update
-
-　次に，ワークスペース上の ``/src`` ディレクトリに移動してください．次に以下のコマンドを実行して依存関係を解決します．
-
-.. code:: bash
-
-    # ../src ディレクトリ上で行う
-    rosdep install -y -i --from-path .
-
-.. caution::
-
-    上記コマンドを実行したとき，もし以下のようなエラーが発生したら一度コマンド ``sudo apt update`` を実行して apt リポジトリを更新してください．
-
-    .. code::
-
-        ERROR: the following rosdeps failed to install
-
-　依存関係解決が成功すると，以下のようなメッセージが表示されます．
-
-.. code::
-
-    #All required rosdeps installed successfully
-
-この後もう一度以下のコマンドを実行すると Fibonacci インターフェースが利用できるようになっているのが確認できるでしょう．
-
-.. code::
 
     ros2 interface list | grep Fibonacci
+
+　もし ``action_tutorials_interfaces/action/Fibonacci`` が表示されない場合は，Service サーバーのチュートリアルで学んだ ``rosdep`` を使って依存関係を解決する必要があります．
+
+　``Fibonacci`` インターフェースは ``action_tutorials_interfaces`` パッケージに含まれています．以下の手順でパッケージをインストールしてください．
+
+1. **`package.xml` に依存関係を追記する**
+
+   ``ros2_workshop`` パッケージの ``package.xml`` を開き，``action_tutorials_interfaces`` への依存関係を追記します．
+
+   .. code:: diff
+
+       <package format="3">
+         <name>ros2_workshop</name>
+         <version>0.0.0</version>
+         <description>TODO: Package description</description>
+         <maintainer email="root@todo.todo">root</maintainer>
+         <license>TODO: License declaration</license>
+   
+         <test_depend>ament_copyright</test_depend>
+         <test_depend>ament_flake8</test_depend>
+         <test_depend>ament_pep257</test_depend>
+         <test_depend>python3-pytest</test_depend>
+   
+         <depend>example_interfaces</depend>
+       + <depend>action_tutorials_interfaces</depend>
+   
+         <export>
+           <build_type>ament_python</build_type>
+         </export>
+       </package>
+
+2. **`rosdep` で依存関係を解決する**
+
+   ワークスペースの ``src`` ディレクトリに移動し，``rosdep install`` コマンドを実行して，追記した依存関係をインストールします．
+
+   .. code:: bash
+
+       # /ws/src ディレクトリ上で行う
+       rosdep install -y -i --from-path .
+
+   .. hint::
+
+      ``rosdep`` の詳しい使い方やコマンドの意味については，「Service サーバーノードを作ってみよう」のチュートリアルを参照してください．
+
+3. **インストールの確認**
+
+   インストールが完了したら，再度以下のコマンドを実行して，``Fibonacci`` インターフェースが利用可能になったことを確認しましょう．
+
+   .. code:: bash
+
+       ros2 interface list | grep Fibonacci
+
+   ``action_tutorials_interfaces/action/Fibonacci`` が表示されれば成功です．
 
 ******************************
 ノードプログラムの書き方
@@ -173,12 +95,13 @@ ROS2 パッケージではそんな依存関係を示す場所として ``packag
 必要なモジュールのインポート
 ==============================
 
-　`rclpy` と `Node` に加えて，Action Serverを扱うための `rclpy.action` から `ActionServer` をインポートします．また，先ほど確認した `Fibonacci` Actionもインポートします．
+　`rclpy` と `Node` に加えて，Action Serverを扱うための `rclpy.action` から `ActionServer` をインポートします．また，先ほどインストールした `Fibonacci` Actionもインポートします．
 
 .. code:: python
 
     #!/usr/bin/env python3
     import rclpy
+    import time
     from rclpy.node import Node
     from rclpy.action import ActionServer
 
@@ -322,7 +245,7 @@ ROS2 パッケージではそんな依存関係を示す場所として ``packag
 キャンセル処理の実装
 ------------------------
 
-　Actionの重要な機能の一つに，クライアントからの**キャンセル要求**への対応があります．処理の途中でクライアントがタスクの中断を要求した場合，サーバーは速やかに処理を停止する必要があります．
+　Actionの重要な機能の一つに，クライアントからの **キャンセル要求** への対応があります．処理の途中でクライアントがタスクの中断を要求した場合，サーバーは速やかに処理を停止する必要があります．
 
 `for` ループの先頭で，キャンセル要求が来ていないかを確認し，もし来ていればゴールを「キャンセル済み」の状態にして処理を終了させます．
 
@@ -415,7 +338,7 @@ ROS2 パッケージではそんな依存関係を示す場所として ``packag
 パッケージをビルドする
 ***************************
 
-　`package.xml` と `setup.py` を変更したので，再度パッケージをビルドします．
+　`package.xml` と `setup.py` を変更したので，再度パッケージをビルдします．
 
 .. code:: bash
 
@@ -426,7 +349,7 @@ ROS2 パッケージではそんな依存関係を示す場所として ``packag
 ノードを実行する
 **************************
 
-　ビルド完了後，ワークスペースを読み込み，サーバーとクライアントを**2つのターミナル**で実行します．
+　ビルド完了後，ワークスペースを読み込み，サーバーとクライアントを **2つのターミナル** で実行します．
 
 .. code:: bash
 

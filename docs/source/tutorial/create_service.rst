@@ -17,6 +17,138 @@ Service とは
 
 .. image:: /_static/about_service.gif
 
+*******************************************
+Service インターフェースをインストールする
+*******************************************
+
+　このチュートリアルでは ``example_interfaces`` パッケージに含まれる ``AddTwoInts`` という Service メッセージインターフェースを使用します．まず，このインターフェースが利用可能かどうかを確認しましょう．
+
+　以下のコマンドは，利用可能なインターフェースの中から ``AddTwoInts`` を含むものを検索します．
+
+.. code:: bash
+
+    ros2 interface list | grep AddTwoInts
+
+　もし ``example_interfaces/srv/AddTwoInts`` が表示されれば，パッケージはすでにインストールされています．何も表示されない場合は，これから説明する手順で依存関係を解決する必要があります．
+
+　ここでは ROS2 パッケージ管理でよく使う **rosdep（ロスデプ）** を使い，必要なパッケージをインストールして依存関係を解決する方法を解説します．
+
+***********************************
+インストールしたいパッケージを探す
+***********************************
+
+　``example_interfaces`` パッケージをインストールするために，rosdep という依存関係解決ツールを使ってみましょう．これを使うことで，例えば他の ROS2 環境で開発したパッケージを使用するときに，すぐに依存関係を解決することができます．
+
+　初めて rosdep を使う場合は，以下のコマンドを実行して rosdep を初期化してください．しかし，もし Docker コンテナを利用している場合はこの作業はすでに行われているためエラーが発生しますが，正常な反応なので気にする必要はありません．
+
+.. code:: bash
+
+    sudo rosdep init
+
+　次に以下のコマンドを実行して rosdep を最新の状態にアップデートしてください．
+
+.. code:: bash
+
+    rosdep update
+
+　次に，以下のコマンドを実行してパッケージ ``example_interfaces`` がインストールできるかどうか確認します．応答があればそのパッケージは Ubuntu のパッケージ管理ツール ``apt`` からインストール可能であることを示しています．
+
+.. code:: bash
+
+    rosdep db | grep example_interfaces
+
+.. hint::
+
+    上記のコマンドのように ``rosdep db | grep <探したいパッケージ名>`` を実行することで rosdep からインストール可能なパッケージを検索することができます．
+
+　上記のコマンドを実行すると，以下のような応答があるでしょう．
+
+.. code::
+
+    example_interfaces -> ros-humble-example-interfaces
+
+これの読み方は以下のとおりです．右に書かれているパッケージ名で ``apt install`` することで簡単に該当のパッケージをインストールすることができます．
+
+.. code::
+
+    パッケージ名 -> apt でインストールできるパッケージ名
+
+このまま ``sudo apt install ros-humble-example-interfaces`` を実行してもいいのですが，ここでは続けて ``package.xml`` と ``rosdep`` を使い依存関係となるパッケージをインストールする方法を解説します．
+
+********************
+依存関係を解決する
+********************
+
+　依存関係というのはどういうことかというと，ようはパッケージ A を動かすためにはパッケージ B が必要な場合，**パッケージ A はパッケージ B と依存関係にある** ことを示しています．
+ROS2 パッケージではそんな依存関係を示す場所として ``package.xml`` が用意されています．作成した ``ros2_workshop`` パッケージの package.xml を開いてみましょう．
+
+　``<package>`` タグ内に以下のように依存関係となるパッケージ ``example_interfaces`` を追記しましょう．
+
+.. code:: diff
+
+    <package format="3">
+      <name>ros2_workshop</name>
+      <version>0.0.0</version>
+      <description>TODO: Package description</description>
+      <maintainer email="root@todo.todo">root</maintainer>
+      <license>TODO: License declaration</license>
+
+      <test_depend>ament_copyright</test_depend>
+      <test_depend>ament_flake8</test_depend>
+      <test_depend>ament_pep257</test_depend>
+      <test_depend>python3-pytest</test_depend>
+
+    + <depend>example_interfaces</depend>
+
+      <export>
+        <build_type>ament_python</build_type>
+      </export>
+    </package>
+
+.. hint::
+
+    このように package.xml に依存関係を追記したい場合は以下のように書きます．
+
+    .. code:: xml
+
+        <depend>パッケージ名</depend>
+
+　これで **パッケージ ros2_workshop はパッケージ example_interfaces に依存している** という定義ができました．
+
+　次に依存関係を解決するコマンドを実行する前に，一度以下のコマンドを実行して apt リポジトリを更新しましょう．なぜこれをしなければならないかというと，rosdep は apt をラップしているからです．
+
+.. code:: bash
+
+    sudo apt update
+
+　次に，ワークスペース上の ``/src`` ディレクトリに移動してください．次に以下のコマンドを実行して依存関係を解決します．
+
+.. code:: bash
+
+    # /ws/src ディレクトリ上で行う
+    rosdep install -y -i --from-path .
+
+.. caution::
+
+    上記コマンドを実行したとき，もし以下のようなエラーが発生したら一度コマンド ``sudo apt update`` を実行して apt リポジトリを更新してください．
+
+    .. code::
+
+        ERROR: the following rosdeps failed to install
+
+　依存関係解決が成功すると，以下のようなメッセージが表示されます．
+
+.. code::
+
+    #All required rosdeps installed successfully
+
+この後もう一度以下のコマンドを実行すると ``AddTwoInts`` インターフェースが利用できるようになっているのが確認できるでしょう．
+
+.. code:: bash
+
+    ros2 interface list | grep AddTwoInts
+
+
 ******************************
 ノードプログラムの書き方
 ******************************
@@ -206,7 +338,7 @@ Service Server を作成する
 パッケージをビルドする
 ***************************
 
-　``setup.py`` を変更したので，再度パッケージをビルドします．
+　``package.xml`` と ``setup.py`` を変更したので，再度パッケージをビルドします．
 
 .. code:: bash
 
@@ -299,33 +431,33 @@ Service Server を作成する
 
     # Nodeクラスを継承して、オリジナルのService Serverノードクラスを定義
     class PracticeServiceServer(Node):
-            # クラスのインスタンスが作成されるときに自動的に呼び出される初期化メソッド (コンストラクタ)
-            def __init__(self):
-                # 親クラス (Node) のコンストラクタを呼び出し、ノード名を 'practice_service_server' として登録
-                super().__init__('practice_service_server')
+        # クラスのインスタンスが作成されるときに自動的に呼び出される初期化メソッド (コンストラクタ)
+        def __init__(self):
+            # 親クラス (Node) のコンストラクタを呼び出し、ノード名を 'practice_service_server' として登録
+            super().__init__('practice_service_server')
 
-                # Service Serverを作成する
-                # self.create_service() メソッドは3つの引数を取る
-                self.srv = self.create_service(
-                    AddTwoInts,                 # 第1引数: サービスの型 (AddTwoInts型)
-                    'add_two_ints',             # 第2引数: サービス名 (この名前でクライアントから呼び出される)
-                    self.add_two_ints_callback  # 第3引数: リクエスト受信時に呼び出されるコールバック関数
-                )
+            # Service Serverを作成する
+            # self.create_service() メソッドは3つの引数を取る
+            self.srv = self.create_service(
+                AddTwoInts,                 # 第1引数: サービスの型 (AddTwoInts型)
+                'add_two_ints',             # 第2引数: サービス名 (この名前でクライアントから呼び出される)
+                self.add_two_ints_callback  # 第3引数: リクエスト受信時に呼び出されるコールバック関数
+            )
 
-            # クライアントからリクエストを受信した際に呼び出されるコールバック関数
-            # 引数 'request' にリクエストデータが、'response' にレスポンスオブジェクトが格納される
-            def add_two_ints_callback(self, request, response):
-                
-                # リクエストの 'a' フィールドと 'b' フィールドの値を足し算し、
-                # レスポンスの 'sum' フィールドに結果を代入する
-                response.sum = request.a + request.b
-                
-                # サーバー側で処理内容をログとして出力する
-                self.get_logger().info(f'Incoming request\na: {request.a} b: {request.b}\n'
-                                       f'Sending back response: [{response.sum}]')
+        # クライアントからリクエストを受信した際に呼び出されるコールバック関数
+        # 引数 'request' にリクエストデータが、'response' にレスポンスオブジェクトが格納される
+        def add_two_ints_callback(self, request, response):
+            
+            # リクエストの 'a' フィールドと 'b' フィールドの値を足し算し、
+            # レスポンスの 'sum' フィールドに結果を代入する
+            response.sum = request.a + request.b
+            
+            # サーバー側で処理内容をログとして出力する
+            self.get_logger().info(f'Incoming request\na: {request.a} b: {request.b}\n'
+                                   f'Sending back response: [{response.sum}]')
 
-                # 処理結果が格納されたレスポンスオブジェクトをクライアントに返す
-                return response
+            # 処理結果が格納されたレスポンスオブジェクトをクライアントに返す
+            return response
 
 
     # プログラムのメイン処理を定義する関数
