@@ -8,3 +8,4 @@
 install/index
 boot/index
 tutorial/index
+smach/index
