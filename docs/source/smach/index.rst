@@ -14,3 +14,5 @@ smach チュートリアル一覧
     about
     install
     basic
+    cb_state
+    userdata
