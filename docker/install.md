@@ -32,6 +32,9 @@ docker -v
 ```
 Docker version 27.5.1, build 9f9e405
 ```
+> [!IMPORTANT]
+> バージョンの確認ができたらシェルを再起動してください
+
 次に以下のコマンドを実行してください。
 ```bash
 docker images
