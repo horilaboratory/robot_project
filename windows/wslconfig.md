@@ -15,15 +15,27 @@
 ```powershell
 cd ~ ; code .\.wslconfig
 ```
-　ファイルを作成したら以下のコードを VScode 上にコピペしてください。コピペしたらファイルを Control キー + S キー で変更を保存してください。
+　VScodeでファイルが開かれたら，以前記入した内容の次の行から以下の内容をコピペしてください。
 ```
-[wsl2]
 networkingMode=bridged
 vmSwitch=vm_ethernet
 dhcp=true
 localhostForwarding=True
 ```
-ファイルの編集が完了したら PowerShell で以下のコマンドを実行して WSL を再起動してください。
+
+コピペが完了したら以下のような内容になっていることを確認してください．(`memory=4GB`の数値はご自身の環境に合わせた値でかまいません)
+```
+[wsl2]
+memory=4GB
+swap=4GB
+networkingMode=bridged
+vmSwitch=vm_ethernet
+dhcp=true
+localhostForwarding=True
+```
+
+内容を確認できたら Control + S で変更を保存し，VSCodeを閉じてください．
+次に，PowerShell で以下のコマンドを実行して WSL を再起動してください。
 ```bat
 wsl --shutdown
 ```
