@@ -14,10 +14,20 @@
 mkdir -p ~/colcon_ws/src && cd ~/colcon_ws/src
 ```
 
+## `pip` をアップデートする
+　以下のコマンドを実行して pip を更新してください．
+```bash
+python3 -m pip install --upgrade pip
+```
+
 ## erasers_kachaka リポジトリの取得
 　以下のコマンドを実行し erasers_kachaka リポジトリをダウンロードします。
 ```bash
 git clone https://github.com/trcp/erasers_kachaka.git
+```
+ 次に以下のコマンドを実行して `kachaka_api` の Python モジュールをインストールしてください．
+```bash
+pip install kachaka-api
 ```
 
 ## 依存関係パッケージのダウンロード
@@ -46,6 +56,20 @@ cd ../kachaka-api && docker buildx build -t kachaka-api:erasers --target kachaka
 
 > [!NOTE]
 > Docker イメージのビルドには **かなりの時間がかかります。** そのためビルド中にターミナルで新規タブから Ubuntu に入って次の作業を行ってください。
+
+## 依存関係パッケージをインストールする
+　以下のコマンドを実行して必要な Python パッケージをインストールしてください．
+```bash
+pip install "scipy>=1.13.0" transform3d matplotlib numpy==1.22.4
+```
+　つぎに以下のコマンドを実行して `~/colcon_ws` に移動してください．
+```bash
+cd ~/colcon_ws
+```
+　以下のコマンドを実行して依存関係を自動的にインストールします．
+```bash
+rosdep update && rosdep install -y -i --from-path src --skip-keys=ros2_aruco_interfaces --skip-keys=ros2_aruco
+```
 
 ## 環境設定を追記する
 　以下のコマンドを実行してテキストエディタをインストールします。
