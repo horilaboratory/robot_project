@@ -83,12 +83,16 @@ gedit ~/.bashrc
 　`~/.bashrc` の一番下の行に以下のコードを追記してください。
 ```bash
 # kachaka
-export ROS_DOMAIN_ID=1
 export KACHAKA_NAME="er_kachaka"
-export KACHAKA_IP=192.168.8.11
+export KACHAKA_IP=192.168.195.125
 export KACHAKA_ERK_PATH=~/colcon_ws/src/erasers_kachaka
 export GRPC_PORT=26400
 export API_GRPC_BRIDGE_SERVER_URI="${KACHAKA_IP}:${GRPC_PORT}"
+
+# ROS
+export ROS_DOMAIN_ID=0
+export ROS_LOCALHOST_ONLY=0
+export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
 ```
 　テキストエディタ右上の「save」をクリックして変更を保存します。保存が完了したら右上の×を押してテキストエディタを終了します。次に以下のコマンドを実行して変更を反映します。
 ```bash
