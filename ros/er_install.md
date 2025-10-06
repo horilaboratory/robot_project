@@ -19,6 +19,15 @@ mkdir -p ~/colcon_ws/src && cd ~/colcon_ws/src
 ```bash
 python3 -m pip install --upgrade pip
 ```
+> [!NOTE]
+> 上記コマンドを実行した時に以下のようなエラーが発生することがあります。
+> ```bash
+> /usr/bin/python3: No module named pip
+> ```
+> このエラーが発生した時は以下のコマンドを実行してpipのインストールを実施したのち、改めて上記のpipをアップデートするコマンドを実行してください。
+> ```bash
+> sudo apt install -y python3-pip
+> ```
 
 ## erasers_kachaka リポジトリの取得
 　以下のコマンドを実行し erasers_kachaka リポジトリをダウンロードします。
