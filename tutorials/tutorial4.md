@@ -73,6 +73,17 @@ ros2 launch erasers_kachaka_bringup bringup.launch.py use_rviz:=True
 > ros2 launch erasers_kachaka_bringup bringup.launch.py use_rviz:=False
 > ```
 
+## カチャカを動かしてみよう
+カチャカに接続出来たらメッセージをパブリッシュして少しだけ動かしてみましょう．
+
+先ほど動かしたerasers_kachakaは起動したままにして，新しいターミナルのタブを作成します．そのターミナルに以下のコマンドを入力してメッセージをパブリッシュしてみます．
+
+```bash
+ros2 topic pub --rate 0.2 --time 2 /er_kachaka/manual_control/cmd_vel geometry_msgs/msg/Twist "{linear: {x: 0.5}, angular: {z: 0.1}}"
+```
+
+> [!WARNING]
+> ロボットが１ｍ程度動きます．必ず周囲に広いスペースを確保してコマンドを実行してください．
 
 ---
 
