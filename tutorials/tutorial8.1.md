@@ -6,6 +6,8 @@
 
 VSCodeでRaspberryPiへの接続ができたら，左下の表示が以下のように接続先のRaspberryPiの情報が表示されていることを確認してください．
 
+<img src="/imgs/ai-8-1-1.png" width=80% />
+
 まず `ctrl` + `shift` + `P` を押して，コマンドパレットを開き `create new terminal`と入力し，表示された `Terminal: Create New Terminal in Editor Area`を選択します．するとコマンドを入力するターミナルが立ち上がります．
 
 
