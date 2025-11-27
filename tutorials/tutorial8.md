@@ -12,7 +12,7 @@ Ubuntuで作業する人は以下に示すRemote Developmentのインストー�
 
 VSCodeを起動し， `RemoteDevelopment` 拡張機能をインストールします．VSCode左側の四角が並んだようなアイコンのボタンを押し，検索窓に `remote development` と入力して検索します．
 
-<img src="/imgs/ai-8-0-1.png" width=40% />
+<img src="/imgs/ai-8-0-1.png" width=20% />
 
 検索で表示された `Remote Development`拡張機能のインストールを行います．インストールボタンを押します．
 
@@ -27,7 +27,9 @@ LANケーブルを教室の床のLANポートもしくは用意されているLA
 
 <img src="/imgs/ai-8-0-3.png" width=80% />
 
-選択すると以下のような接続先情報を入力する画面になるので以下のように入力してEnterを押します．なお，接続先のRaspberryPiの番号に応じて `rpai01`〜 `rpai05`までありますので適宜変更してください．
+選択するといくつか質問が表示される場合があります．その場合， `Linux`， `続行` といった選択肢を選んでください．
+
+いくつか質問に答えると，接続先情報を入力する画面になるので以下のように入力してEnterを押します．なお，接続先のRaspberryPiの番号に応じて `rpai01`〜 `rpai05`までありますので適宜変更してください．
 
 ```
 tamagawa@rpai01.local
