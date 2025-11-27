@@ -4,6 +4,12 @@
 ここでは深層学習を用いた物体認識や姿勢推定と言ったロボット開発で多用される手法について実際に動かして体験してみます．また，これらのアプリケーションは多くの計算資源を必要とするため，ここではRaspberry Pi AI Kitに搭載のAI専用プロセッサを用いて高速に計算を行います．
 
 ## 環境のセットアップ
+> [!TIP]
+> VirtualBox上のUbuntuで立ち上げたVSCodeを利用してもかまいませんが動作が重たくなりますので，AI編の作業については自分のWindowsにVSCodeをインストールして利用することをお勧めします．
+> インストールと設定は [VSCode のインストールとセットアップ方法](/windows/installvscode.md)を参照してください．
+
+Ubuntuで作業する人は以下に示すRemote Developmentのインストールを行ってください．
+
 VSCodeを起動し， `RemoteDevelopment` 拡張機能をインストールします．VSCode左側の四角が並んだようなアイコンのボタンを押し，検索窓に `remote development` と入力して検索します．
 
 <img src="/imgs/ai-8-0-1.png" width=40% />
@@ -13,7 +19,11 @@ VSCodeを起動し， `RemoteDevelopment` 拡張機能をインストールし�
 <img src="/imgs/ai-8-0-2.png" width=80% />
 
 ## Raspberry Piへの接続
-LANケーブルを教室の床のLANポートもしくは用意されているLANのハブに接続します．接続したらVSCode左下の "><"のようなアイコンをクリックします．以下のようなメニューがVSCode上部に表示されるので， `ホストに接続する...`を選択します．
+LANケーブルを教室の床のLANポートもしくは用意されているLANのハブに接続します．
+
+接続したらVSCode左下の "><"のようなアイコンをクリックします．
+
+以下のようなメニューがVSCode上部に表示されるので， `ホストに接続する...`を選択します．
 
 <img src="/imgs/ai-8-0-3.png" width=80% />
 
