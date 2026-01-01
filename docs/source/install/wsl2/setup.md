@@ -5,8 +5,9 @@ Windows ではデフォルトで WSL2 が利用できないように設定され
 1. スタートメニューで **「タスクマネージャー」** を検索してタスクマネージャーを開くか，キーボードショートカットキー「Ctrl + Shift + Esc」を押してタスクマネージャーを開きます．
 
 1. タスクマネージャーの「パフォーマンス」タブをクリックして，「CPU」のグラフをクリックします．
-
+    <br><img src="https://i.imgur.com/KpZu5G3.png"/>
 1. 「仮想化」というリストに「有効」と表示されているか確認してください．
+    <br><img src="https://i.imgur.com/PJbPjvQ.png"/>
 
     ```{note}
     仮想化が有効になっていない場合は，BIOS設定で CPU の仮想化を有効にしてください．お使いの PC によって BIOS の設定方法は異なりますので，Web ブラウザで以下のキーワードを参考に調べてください．
@@ -17,7 +18,11 @@ Windows ではデフォルトで WSL2 が利用できないように設定され
 ## Linux サブシステムを有効にする
 1. Windows の設定アプリを開きます．
 1. 「システム」を開きます．
-1. 「システム」の「Windows の機能」を開きます．
+    <br><img src="https://i.imgur.com/5AyBwSX.png"/>
+1. 「システム」の「オプション機能」を開きます．
+    <br><img src="https://i.imgur.com/Rm6iLZa.png"/>
+1. 「関連設定」の「Windows のその他の機能」を開きます．
+    <br><img src="https://i.imgur.com/T2Nx6Yc.png"/>
 1. 「Linux 用 Windows サブシステム」をチェックして有効化します．
     <br><img src="https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.ap-northeast-1.amazonaws.com%2F0%2F3307766%2F5c77485b-3e37-f594-be91-97d09d308d2e.png?ixlib=rb-4.0.0&auto=format&gif-q=60&q=75&w=1400&fit=max&s=3579960dfe440360f66d454038ae3ba9" />
 1. 「Hyper-V」という項目にチェックがついていない場合はこちらのチェックも入れてください．
@@ -27,3 +32,9 @@ Windows ではデフォルトで WSL2 が利用できないように設定され
     「OK」ボタンをクリックする前に誤って他のチェックを外したり新たにチェックを入れていないか確認してください．既存の機能が無効化される可能性があります．
     ```
 1. 一度コンピューターを再起動してください．
+
+## WSL2 を有効にする
+Terminal から PowerShell を開き，以下のコマンドを実行して WSL の規定バージョンを `Ver.2.0.0` とします．
+```powershell
+wsl --set-default-version 2
+```

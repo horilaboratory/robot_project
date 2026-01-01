@@ -66,6 +66,7 @@ Terminal 上の PowerShell で実行可能なコマンドのの中には **Windo
 Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.MessageBox]::Show("Hello World!!", "Robot Project", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Information) | Out-Null
 ```
 Terminal（PowerShell）上でショートカットキー「Control + V」を実施して上記コマンドを入力してから実行してみましょう．すると以下のようなポップアップが表示されます．OK をクリックしてポップアップを閉じることができます．
+<br><img src="https://i.imgur.com/DiU6vWQ.png"/>
 
 ### コマンドの実行結果をコピーする
 
