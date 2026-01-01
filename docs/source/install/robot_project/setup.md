@@ -27,8 +27,11 @@ wsl -d erasers_kachaka -u roboworks --cd ~
     ```
     <br><img src="https://i.imgur.com/k2gK5mg.png"/>
 1. **アイコンを設定する（任意）**<br>
-    以下の URL をプロパティに張り付けて `erasers_kachaka` アイコンを追加できます．
-    <br><img src=""/>
+    アイコンプロパティの左側のメニューを「ファイル」にして，以下の URL をプロパティに張り付けて `erasers_kachaka` アイコンを追加できます．
+    ```text
+    https://github.com/horilaboratory/robot_project/blob/wsl-doc/docs/source/_static/erasers_kachaka.jpeg?raw=true
+    ```
+    <br><img src="https://i.imgur.com/Cp9hzin.png"/>
 1. **「このプロファイルを管理者として実行する」にチェックが入っていないことを確認する**<br>
     <br><img src="https://i.imgur.com/r8MMIPq.png"/>
 1. **シェルプロンプトの外観を設定する**<br>
@@ -43,3 +46,6 @@ wsl -d erasers_kachaka -u roboworks --cd ~
     1. このような見た目になっていることを確認してください．
         <br><img src="https://i.imgur.com/mifcH0t.png"/>
 1. **「保存」をクリックする**<br>
+1. **Terminal の「+」横の「v」から `erasers_kachaka` をクリックして動作確認をする**<br>
+    以下のプロンプトシェルが開けば成功です．
+    <br><img src="https://i.imgur.com/pkDtCrF.png"/>
