@@ -1,0 +1,1 @@
+# erasers_kachaka WSL2 イメージのセットアップ
