@@ -34,6 +34,7 @@ language = 'ja'
 
 html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
+html_logo = "_static/erasers_kachaka.jpeg"
 
 # source doc format
 source_suffix = {
