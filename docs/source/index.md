@@ -33,5 +33,5 @@ ros2_tutorials/basic/index
 :maxdepth: 1
 :caption: ROS2 で Kachaka をうごかす
 
-ros2_tutorials/kachaka/index
+ros2_tutorials/erasers_kachaka/index
 ```
