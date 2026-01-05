@@ -16,4 +16,5 @@ install/vscode/index
 install/hyperv/index
 install/wsl2/setup
 install/robot_project/index
+ros2_tutorials/erasers_kachaka/robot_project_setup
 ```
