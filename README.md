@@ -4,3 +4,8 @@
 ```bash
 uv sync
 ```
+
+## Build
+```bash
+uv run make html
+```

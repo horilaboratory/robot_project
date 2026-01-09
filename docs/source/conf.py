@@ -36,11 +36,7 @@ language = 'ja'
 #html_theme = 'sphinx_rtd_theme'
 html_theme = 'pydata_sphinx_theme'
 html_static_path = ['_static']
-html_logo = "_static/logo.png"
-html_show_sourcelink = False
-html_css_files = [
-    'custom.css',
-]
+html_logo = "_static/erasers_kachaka.jpeg"
 
 # source doc format
 source_suffix = {
