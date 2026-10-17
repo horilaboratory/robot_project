@@ -1,4 +1,4 @@
-# 7.5. カメラ画像を取得して表示しよう
+# 8.2. カメラ画像を取得して表示しよう
 
 　本チュートリアルでは、**/er_kachaka/front_camera/image_raw** トピックをサブスクライブし、OpenCVとCvBridgeを使用してカメラ画像を表示する方法を解説します。BEST_EFFORT QoSプロファイルの設定方法や画像処理の基本フローを学びましょう。
 
@@ -333,4 +333,4 @@ def image_callback(self, msg):
 
 --- 
 
-次のチュートリアル [7.6. LiDAR センサーから距離データを取得しよう](tutorial7.6.md) では、sensor_msgs/msg/LaserScan 型を使ったレーザースキャナの取得と使用方法を学びます．
+次のチュートリアル [8.3. LiDAR センサーから距離データを取得しよう](tutorial8.3.md) では、sensor_msgs/msg/LaserScan 型を使ったレーザースキャナの取得と使用方法を学びます．

@@ -21,5 +21,6 @@ VirtualBoxを用いた開発環境を利用したい方はこちら↓
     - [7.1 Node を作ろう](/tutorials/tutorial7.1.md)
     - [7.2 Publisher を実装しよう](/tutorials/tutorial7.2.md)
     - [7.3 Subscriber を実装しよう](/tutorials/tutorial7.3.md)
-    - [7.4 Topic を使いロボットからテキストを発話させてみよう](/tutorials/tutorial7.4.md)
-    - [7.5 カメラ画像を取得して表示しよう](/tutorials/tutorial7.5.md)
+- [8. ロボットを動かしてみよう]()
+    - [8.1 Topic を使いロボットからテキストを発話させてみよう](/tutorials/tutorial8.1.md)
+    - [8.2 カメラ画像を取得して表示しよう](/tutorials/tutorial8.2.md)

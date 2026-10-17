@@ -1,4 +1,4 @@
-# AI活用編概要
+# 9. AI活用編概要
 
 ## 概要
 ここでは深層学習を用いた物体認識や姿勢推定と言ったロボット開発で多用される手法について実際に動かして体験してみます．また，これらのアプリケーションは多くの計算資源を必要とするため，ここではRaspberry Pi AI Kitに搭載のAI専用プロセッサを用いて高速に計算を行います．
@@ -12,11 +12,11 @@ Ubuntuで作業する人は以下に示すRemote Developmentのインストー�
 
 VSCodeを起動し， `RemoteDevelopment` 拡張機能をインストールします．VSCode左側の四角が並んだようなアイコンのボタンを押し，検索窓に `remote development` と入力して検索します．
 
-<img src="/imgs/ai-8-0-1.png" width=20% />
+<img src="/imgs/ai-9-0-1.png" width=20% />
 
 検索で表示された `Remote Development`拡張機能のインストールを行います．インストールボタンを押します．
 
-<img src="/imgs/ai-8-0-2.png" width=80% />
+<img src="/imgs/ai-9-0-2.png" width=80% />
 
 ## Raspberry Piへの接続
 LANケーブルを教室の床のLANポートもしくは用意されているLANのハブに接続します．
@@ -25,7 +25,7 @@ LANケーブルを教室の床のLANポートもしくは用意されているLA
 
 以下のようなメニューがVSCode上部に表示されるので， `ホストに接続する...`を選択します．
 
-<img src="/imgs/ai-8-0-3.png" width=80% />
+<img src="/imgs/ai-9-0-3.png" width=80% />
 
 選択するといくつか質問が表示される場合があります．その場合， `Linux`， `続行` といった選択肢を選んでください．
 
@@ -41,14 +41,14 @@ tamagawa@rpai01.local
 開発を行うために必要な拡張機能のインストールを行います．インストールする拡張機能は以下です．
 
 **Python拡張機能**
-<img src="/imgs/ai-8-0-5.png" />
+<img src="/imgs/ai-9-0-5.png" />
 
 **Jupyter拡張機能**
-<img src="/imgs/ai-8-0-6.png" />
+<img src="/imgs/ai-9-0-6.png" />
 
 Remote Developmentをインストールしたときと同じ,VSCodeの拡張機能の管理タブのボタンを押して開きます．表示された検索窓にそれぞれ拡張機能の名前を入力し，検索，インストールを行います．
 
 以上で準備は完了です．
 
 ----
-[8.1 物体認識を使ってみように進む](/tutorials/tutorial8.1.md)
+[9.1 物体認識を使ってみように進む](/tutorials/tutorial9.1.md)

@@ -16,8 +16,12 @@
     - [7.1 Node を作ろう](tutorial7.1.md)
     - [7.2 Publisher を実装しよう](tutorial7.2.md)
     - [7.3 Subscriber を実装しよう](tutorial7.3.md)
-    - [7.4 Topic を使いロボットからテキストを発話させてみよう](tutorial7.4.md)
-    - [7.5 カメラ画像を取得して表示しよう](tutorial7.5.md)
+- [8. ロボットを動かしてみよう]()
+    - [8.1 Topic を使いロボットからテキストを発話させてみよう](tutorial8.1.md)
+    - [8.2 カメラ画像を取得して表示しよう](tutorial8.2.md)
+    - [8.3 LiDAR センサーから距離データを取得しよう](tutorial8.3.md)
+- [9. AI活用編](tutorial9.md)
+    - [9.1 物体認識を使ってみよう](tutorial9.1.md)
 
 ## WSL 用
 - [0. Ubuntu 22.04 を起動する方法、シャットダウンする方法](tutorial0.md)

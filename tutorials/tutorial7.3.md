@@ -169,4 +169,4 @@ ros2 topic echo /greeting
 
 ---
 
-次のチュートリアル [7.4. Topic を使いロボッからテキストを発話させてみよう](tutorial7.4.md) では、String 型 Message を使いロボットからテキストを発話させるプログラム `robot_speak.py` を実装します。
+次のチュートリアル [8.1. Topic を使いロボッからテキストを発話させてみよう](tutorial8.1.md) では、String 型 Message を使いロボットからテキストを発話させるプログラム `robot_speak.py` を実装します。
