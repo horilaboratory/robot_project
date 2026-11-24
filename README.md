@@ -26,5 +26,6 @@ VirtualBoxもしくはWSL2を利用したロボット開発環境のセットア
     - [8.1 Topic を使いロボットからテキストを発話させてみよう](/tutorials/tutorial8.1.md)
     - [8.2 カメラ画像を取得して表示しよう](/tutorials/tutorial8.2.md)
     - [8.3 LiDAR センサーから距離データを取得しよう](/tutorials/tutorial8.3.md)
-- [9. AI活用編](/tutorials/tutorial9.md)
-    - [9.1 物体認識を使ってみよう](/tutorials/tutorial9.1.md)
+- [9. AI活用編]()
+    - [9.1 準備](/tutorials/tutorial9.1.md)
+    - [9.2 物体認識を使ってみよう](/tutorials/tutorial9.2.md)
