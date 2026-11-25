@@ -1,7 +1,9 @@
 # 9.1 物体認識を動かしてみよう
 
 ## 概要
-ここではYOLOを用いた物体認識を動作させます．RaspberryPi上で実行する物体認識プログラムは既にRaspberryPi側に実装済みなのでこれを実行し，認識結果をサブスクライブし自分のプロジェクトに活用してください．
+ここではYOLOを用いた物体認識を動作させます．物体認識プログラムはRaspberry Pi上に実装済みですので実行するだけで認識結果がPublishされます．その結果をVirtualBoxを実行している自分のPC環境でSubscribeして利用します．このシステムの外観図を以下に示します．
+
+<img src="/imgs/ai-system-overview.png" width=80%>
 
 なお，RaspberryPi上に実装された物体認識プログラムについて詳しく知りたい場合は，[horilaboratory/robot_project_ai](https://github.com/horilaboratory/robot_project_ai)を参照してください．
 
@@ -21,14 +23,16 @@
 ssh tamagawa@rpai01.local
 ```
 
-パスワードを聞かれるので，ログインパスワードを入力してください．
+パスワードを聞かれるので，ログインパスワードを入力してください．ログインが完了すると，ターミナルのプロンプト（左側に書いてある文字）が以下のように， `tamagawa@rpai0X:~ $` (Xは利用中のRaspberry Piの番号)に変わります．**この状態で入力されたコマンドは全てRaspberry Pi上で実行されます．**
+
+<img src="/imgs/ai-raspberrypi-login.png" width=80%>
 
 ### 物体認識プログラムの起動
 ----
 次に，物体認識プログラムを起動します．起動するためのプログラム（シェルスクリプト）が `~/robot_project_ai`ディレクトリに配置されていますので，そのディレクトリまで移動し，シェルスクリプトを起動します．
 
 ```bash
-cd ~/robot_project_ai
+cd ~/Documents/robot_project_ai
 ./run_obj_detection.sh
 ```
 
@@ -69,5 +73,63 @@ rqt
 
 
 ## 認識結果のサブスクライブ
-物体認識結果をサブスクライブし，認識結果によってカチャカを制御するプログラムを作成できます．物体認識の結果は `vision_msgs/Detection2DArray`型のメッセージが `/detection` トピックとしてパブリッシュされています．
+物体認識結果をサブスクライブし，認識結果によってカチャカを制御するプログラムを作成できます．物体認識の結果は `vision_msgs/msg/Detection2DArray` 型のメッセージとして `/detections` トピックにパブリッシュされています．
+
+### 人を検出したら表示する
+
+ここでは，認識結果を受け取り，人が検出されていればターミナルに「人を検出！！」と表示します．メッセージの主な構造は以下のとおりです．
+
+- `msg.detections`：1枚の画像から検出された物体のリストです．検出がなければ空になります．
+- `detection.results`：1つの物体に対する認識結果のリストです．
+- `result.hypothesis.class_id`：物体の種類です．この物体認識プログラムでは，人の場合は文字列 `"person"` になります．
+- `result.hypothesis.score`：その認識結果の信頼度です．
+- `detection.bbox`：検出された物体を囲む矩形の中心座標とサイズです．このプログラムでは元画像のピクセル単位です．
+
+Raspberry Pi上で物体認識プログラムを起動したまま，自分のVirtualBox上のUbuntuで新しい端末を開き，次のコマンドでファイルを作成します．
+
+```bash
+code detect_person.py
+```
+
+以下を貼り付けて保存してください．
+
+```python
+import rclpy
+from rclpy.node import Node
+from vision_msgs.msg import Detection2DArray
+
+
+class PersonSubscriber(Node):
+    def __init__(self):
+        super().__init__('person_subscriber')
+        # /detections を受信するたびに detection_callback を呼ぶ
+        self.subscription = self.create_subscription(
+            Detection2DArray, '/detections', self.detection_callback, 10
+        )
+
+    def detection_callback(self, msg):
+        # 画像内の物体と，それぞれの認識結果を順に調べる
+        for detection in msg.detections:
+            for result in detection.results:
+                # このYOLOプログラムでは人のクラス名は "person"
+                if result.hypothesis.class_id == 'person':
+                    print('人を検出！！', flush=True)
+                    return  # 1枚の画像につき1回だけ表示する
+
+
+def main():
+    rclpy.init()
+    node = PersonSubscriber()
+    try:
+        rclpy.spin(node)  # メッセージを待ち，受信時にコールバックを実行する
+    except KeyboardInterrupt:
+        pass
+    finally:
+        node.destroy_node()
+        rclpy.shutdown()
+
+
+if __name__ == '__main__':
+    main()
+```
 
