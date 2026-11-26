@@ -1,6 +1,7 @@
 # 9.1 物体認識を動かしてみよう
 
 ## 概要
+----
 ここではYOLOを用いた物体認識を動作させます．物体認識プログラムはRaspberry Pi上に実装済みですので実行するだけで認識結果がPublishされます．その結果をVirtualBoxを実行している自分のPC環境でSubscribeして利用します．このシステムの外観図を以下に示します．
 
 <img src="/imgs/ai-system-overview.png" width=80%>
@@ -8,9 +9,9 @@
 なお，RaspberryPi上に実装された物体認識プログラムについて詳しく知りたい場合は，[horilaboratory/robot_project_ai](https://github.com/horilaboratory/robot_project_ai)を参照してください．
 
 ## 物体認識プログラムの起動と認識結果の確認
-
-### RaspberryPiへの接続
 ----
+### RaspberryPiへの接続
+
 まずは，[9.1 準備](/tutorials/tutorial9.1.md)に説明されているとおり，RaspberryPiを接続し，電源を入れてください．電源投入後，起動が完了するまで待ちます（2分ほど待てば起動しているはずです）．
 
 次に，RaspberryPi上で物体認識プログラムを起動するためにRaspberryPi環境にログインします．ログインはUbuntuの端末を開き，以下のSSHコマンドを入力します．
@@ -28,7 +29,7 @@ ssh tamagawa@rpai01.local
 <img src="/imgs/ai-raspberrypi-login.png" width=80%>
 
 ### 物体認識プログラムの起動
-----
+
 次に，物体認識プログラムを起動します．起動するためのプログラム（シェルスクリプト）が `~/robot_project_ai`ディレクトリに配置されていますので，そのディレクトリまで移動し，シェルスクリプトを起動します．
 
 ```bash
@@ -56,7 +57,6 @@ cd ~/Documents/robot_project_ai
 > ```
 
 ### 認識結果の確認
-----
 
 > [!IMPORTANT]
 > この部分の作業は自分のVirtualBox上のUbuntuで行いますので，これまでの作業で使った端末は開いたままにして新しく端末を開いてください．
@@ -71,9 +71,47 @@ rqt
 
 すると以下のようなビューワが開きます．
 
+<img src="/imgs/ai-rqt-top.png" width=70%>
+
+ここで，上部のメニューから， `Plugins` > `Visualization` > `Image View` を選択します．するとPublishされているTopicの画像を表示するためのウィンドウが生成されます．
+
+<img src="/imgs/ai-rqt-visualization.png" width=70%>
+
+生成されたウィンドウのプルダウンメニューから， `/image_annotated` を選択します．するとRaspberry Pi上で実行されている物体認識結果が表示されます．
+
+<img src="/imgs/ai-rqt-detection.png" width=70%>
+
+表示されれば問題なく物体認識プログラムが動作し，結果がPublishされています．確認後は開いていても良いですし，終了したい場合は，バツボタンを押してボタンを押してウィンドウを閉じてください．
+
 
 ## 認識結果のサブスクライブ
+----
+
+### 概要と準備
+
 物体認識結果をサブスクライブし，認識結果によってカチャカを制御するプログラムを作成できます．物体認識の結果は `vision_msgs/msg/Detection2DArray` 型のメッセージとして `/detections` トピックにパブリッシュされています．
+
+準備として以下のコマンドで `vision_msgs` をインストールします．
+```bash
+apt update
+sudo apt install -y ros-${ROS_DISTRO}-vision-msgs
+```
+
+> [!NOTE]
+> ROS関連の証明書切れでインストールできないとエラーが出た場合は，以下のコマンドを実行した上で上記のインストールコマンドを再度実行してください．
+> ```bash
+> # 1. 古いリポジトリ設定と鍵を削除
+> sudo rm -f /etc/apt/sources.list.d/ros2.list /etc/apt/sources.list.d/ros2-latest.list /usr/share/keyrings/ros-archive-keyring.gpg
+> 
+> # 2. curl を用意
+> sudo apt update && sudo apt install -y curl
+> 
+> # 3. ros2-apt-source の最新版をダウンロードしてインストール
+> export ROS_APT_SOURCE_VERSION=$(curl -s https://api.github.com/repos/ros-infrastructure/ros-apt-source/releases/latest | grep -F '"tag_name"' | awk -F'"' '{print $4}')
+> curl -L -o /tmp/ros2-apt-source.deb "https://github.com/ros-infrastructure/ros-apt-source/releases/download/${ROS_APT_SOURCE_VERSION}/ros2-apt-source_${ROS_APT_SOURCE_VERSION}.$(. /etc/os-release && echo $VERSION_CODENAME)_all.deb"
+> sudo apt install -y /tmp/ros2-apt-source.deb
+> rm -f /tmp/ros2-apt-source.deb
+
 
 ### 人を検出したら表示する
 
@@ -88,6 +126,8 @@ rqt
 Raspberry Pi上で物体認識プログラムを起動したまま，自分のVirtualBox上のUbuntuで新しい端末を開き，次のコマンドでファイルを作成します．
 
 ```bash
+mkdir ~/robopro-ai
+cd ~/robopro-ai
 code detect_person.py
 ```
 
@@ -133,3 +173,15 @@ if __name__ == '__main__':
     main()
 ```
 
+保存したら，以下のようにPythonスクリプトを実行します．
+
+```bash
+python3 detect_person.py
+```
+
+するとカメラに人が写ったときに「人を検出！！」と表示されます．
+
+## 発展
+----
+- 人出はなくりんごやバナナなど別の物体を発見したときに通知するように変更してみましょう
+- 認識した物体の座標を取得してみましょう
