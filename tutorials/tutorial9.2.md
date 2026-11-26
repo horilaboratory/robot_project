@@ -93,7 +93,7 @@ rqt
 
 準備として以下のコマンドで `vision_msgs` をインストールします．
 ```bash
-apt update
+sudo apt update
 sudo apt install -y ros-${ROS_DISTRO}-vision-msgs
 ```
 
